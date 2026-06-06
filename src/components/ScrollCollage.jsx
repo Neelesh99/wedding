@@ -76,16 +76,16 @@ export default function ScrollCollage() {
   const sizes = {
     main: isMobile ? { w: 240, h: 340 } : { w: 500, h: 520 },
     beach: isMobile 
-      ? { w: 120, h: 100, right: 'calc(50% + 130px + 12px)', top: 'calc(50% - 180px)' } 
+      ? { w: 120, h: 100, right: 'calc(50% + 120px - 45px)', top: 'calc(50% - 180px)' } 
       : { w: 280, h: 240, right: 'calc(50% + 250px + 24px)', top: 'calc(50% - 270px)' },
     dancing: isMobile 
-      ? { w: 100, h: 70, right: 'calc(50% + 130px + 12px)', top: 'calc(50% - 10px)' } 
+      ? { w: 100, h: 75, right: 'calc(50% + 120px - 30px)', top: 'calc(50% - 10px)' } 
       : { w: 245, h: 165, right: 'calc(50% + 250px + 24px)', top: 'calc(50% - 10px)' },
     canyon: isMobile 
-      ? { w: 100, h: 70, left: 'calc(50% + 130px + 12px)', top: 'calc(50% - 40px)' } 
+      ? { w: 100, h: 75, left: 'calc(50% + 120px - 35px)', top: 'calc(50% - 60px)' } 
       : { w: 220, h: 160, left: 'calc(50% + 250px + 24px)', top: 'calc(50% - 60px)' },
     feet: isMobile 
-      ? { w: 120, h: 120, left: 'calc(50% + 130px + 12px)', top: 'calc(50% + 80px)' } 
+      ? { w: 120, h: 120, left: 'calc(50% + 120px - 45px)', top: 'calc(50% + 70px)' } 
       : { w: 280, h: 280, left: 'calc(50% + 250px + 24px)', top: 'calc(50% + 120px)' },
   };
 
@@ -158,7 +158,7 @@ export default function ScrollCollage() {
           <img 
             src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600" 
             alt="Beach sunset" 
-            className="absolute pointer-events-none select-none z-20 object-cover shadow-md"
+            className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
               width: `${sizes.beach.w}px`,
               height: `${sizes.beach.h}px`,
@@ -167,7 +167,8 @@ export default function ScrollCollage() {
               borderRadius: '24px',
               opacity: 1,
               transform: `translate3d(${(1 - easedBeachX) * -translateOffset}px, ${(1 - easedBeachY) * 60}px, 0) scale(${0.85 + 0.15 * easedBeachX})`,
-              transformOrigin: 'right center'
+              transformOrigin: 'right center',
+              zIndex: isMobile ? 5 : 20
             }}
           />
 
@@ -175,7 +176,7 @@ export default function ScrollCollage() {
           <img 
             src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600" 
             alt="Dancing couple" 
-            className="absolute pointer-events-none select-none z-20 object-cover shadow-md"
+            className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
               width: `${sizes.dancing.w}px`,
               height: `${sizes.dancing.h}px`,
@@ -185,7 +186,8 @@ export default function ScrollCollage() {
               filter: 'grayscale(0.6)',
               opacity: 1,
               transform: `translate3d(${(1 - easedDancingX) * -translateOffset}px, ${(1 - easedDancingY) * -60}px, 0) scale(${0.85 + 0.15 * easedDancingX})`,
-              transformOrigin: 'right center'
+              transformOrigin: 'right center',
+              zIndex: isMobile ? 5 : 20
             }}
           />
 
@@ -261,7 +263,7 @@ export default function ScrollCollage() {
           <img 
             src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=600" 
             alt="Canyon lookout" 
-            className="absolute pointer-events-none select-none z-20 object-cover shadow-md"
+            className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
               width: `${sizes.canyon.w}px`,
               height: `${sizes.canyon.h}px`,
@@ -270,7 +272,8 @@ export default function ScrollCollage() {
               borderRadius: '20px',
               opacity: 1,
               transform: `translate3d(${(1 - easedCanyonX) * translateOffset}px, ${(1 - easedCanyonY) * 50}px, 0) scale(${0.85 + 0.15 * easedCanyonX})`,
-              transformOrigin: 'left center'
+              transformOrigin: 'left center',
+              zIndex: isMobile ? 5 : 20
             }}
           />
 
@@ -278,7 +281,7 @@ export default function ScrollCollage() {
           <img 
             src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600" 
             alt="Hiking legs" 
-            className="absolute pointer-events-none select-none z-20 object-cover shadow-md"
+            className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
               width: `${sizes.feet.w}px`,
               height: `${sizes.feet.h}px`,
@@ -287,7 +290,8 @@ export default function ScrollCollage() {
               borderRadius: '24px',
               opacity: 1,
               transform: `translate3d(${(1 - easedFeetX) * translateOffset}px, ${(1 - easedFeetY) * -70}px, 0) scale(${0.85 + 0.15 * easedFeetX})`,
-              transformOrigin: 'left center'
+              transformOrigin: 'left center',
+              zIndex: isMobile ? 5 : 20
             }}
           />
 

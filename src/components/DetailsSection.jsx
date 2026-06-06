@@ -45,7 +45,7 @@ export default function DetailsSection() {
   ];
 
   return (
-    <section id="details" className="py-24 px-6 md:px-12 bg-white w-full border-t border-black/5 flex flex-col items-center">
+    <section id="details" className="py-24 px-6 md:px-12 bg-white w-full flex flex-col items-center">
       <div className="w-full max-w-[1000px]">
         
         {/* Intro */}

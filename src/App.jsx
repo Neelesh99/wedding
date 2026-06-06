@@ -11,6 +11,15 @@ function App() {
       {/* Scroll-driven Collage Hero Section */}
       <ScrollCollage />
 
+      {/* Soft gradient spacer transition from off-white hero to white details */}
+      <div 
+        className="w-full relative z-20" 
+        style={{ 
+          height: '160px', 
+          backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)' 
+        }} 
+      />
+
       {/* Main Content Sections */}
       <main className="w-full relative z-30">
         
