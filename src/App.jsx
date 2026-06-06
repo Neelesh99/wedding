@@ -28,13 +28,13 @@ function App() {
       {/* Footer */}
       <footer className="py-12 bg-bg-accent border-t border-black/5 text-center px-6">
         <div className="max-w-[600px] mx-auto flex flex-col items-center gap-4">
-          <p className="font-display italic text-3xl text-accent-color">J&P</p>
+          <p className="font-display italic text-3xl text-accent-color">P&N</p>
           <p className="text-xs text-text-muted font-medium uppercase tracking-[0.2em]">
             June 18, 2027 • Big Sur, California
           </p>
           <div className="h-[1px] w-12 bg-accent-color/30 my-2"></div>
           <p className="text-[11px] text-text-muted/65 font-light">
-            Made with love for Jim and Pam. Hopefully, Roy doesn't show up.
+            Made with love for Palak and Neelesh.
           </p>
         </div>
       </footer>
