@@ -114,15 +114,15 @@ export default function EventCountdown() {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontWeight: 500,
-            fontSize: isMobile ? '0.7rem' : '0.78rem',
+            fontWeight: 900,
+            fontSize: isMobile ? '1.5rem' : '1.6rem',
             color: 'var(--accent-color)',
             letterSpacing: '0.32em',
             textTransform: 'uppercase',
             marginBottom: isMobile ? '3rem' : '4.5rem',
           }}
         >
-          📍 Jaipur, India
+          in Jaipur, India
         </p>
 
         {/* Countdown ticker */}

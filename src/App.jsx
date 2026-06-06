@@ -10,22 +10,22 @@ import RSVPForm from './components/RSVPForm';
 function App() {
   return (
     <div id="top" className="min-h-screen flex flex-col bg-[#fcf7ed]">
-      
+
       {/* Scroll-driven Collage Hero Section */}
       <ScrollCollage />
 
       {/* Soft gradient spacer transition from off-white hero to white countdown */}
-      <div 
-        className="w-full relative z-20" 
-        style={{ 
-          height: '160px', 
-          backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)' 
-        }} 
+      <div
+        className="w-full relative z-20"
+        style={{
+          height: '160px',
+          backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)'
+        }}
       />
 
       {/* Main Content Sections */}
       <main className="w-full relative z-30">
-        
+
         {/* Countdown to Forever Statement */}
         <CountdownSection />
 
@@ -34,24 +34,6 @@ function App() {
 
         {/* Event Countdown Section */}
         <EventCountdown />
-
-        {/* Soft gradient spacer transition from off-white story to white details */}
-        <div 
-          className="w-full relative z-20" 
-          style={{ 
-            height: '160px', 
-            backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)' 
-          }} 
-        />
-
-        {/* Details & Logistics */}
-        <DetailsSection />
-
-        {/* FAQ Accordion */}
-        <FAQSection />
-
-        {/* Interactive RSVP Form */}
-        <RSVPForm />
 
       </main>
 
@@ -64,7 +46,7 @@ function App() {
           </p>
           <div className="h-[1px] w-12 bg-accent-color/30 my-2"></div>
           <p className="text-[11px] text-text-muted/65 font-light">
-            Made with love for Palak and Neelesh.
+            Made with love by Palak and Neelesh.
           </p>
         </div>
       </footer>

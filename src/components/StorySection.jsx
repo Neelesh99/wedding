@@ -171,17 +171,33 @@ export default function StorySection() {
     };
   };
 
+  // Single source of truth for all chapter copy — edit here to update both layouts
+  const chapters = [
+    {
+      title: 'chapter one: how we met',
+      body: 'We met at work but initially we hardly talked to each other, and when we did it was usually from across a table tennis table with a healthy rivalry.',
+    },
+    {
+      title: 'chapter two: falling in love',
+      body: 'What started off as an airport pickup quickly turned into late night car rides, weekly badminton frays, food + crafts date nights and enjoying our little life in London.',
+    },
+    {
+      title: 'chapter three: the next step',
+      body: 'On a trip with 2 questions, yesses and rings — suddenly the future we had been imagining became something we could invite everyone to.',
+    },
+  ];
+
   const polaroidWidth = isMobile ? 240 : 320;
   const polaroidHeight = isMobile ? 290 : 380;
 
   return (
-    <div 
-      ref={containerRef} 
-      className="relative w-full" 
+    <div
+      ref={containerRef}
+      className="relative w-full"
       style={{ height: '350vh', backgroundColor: '#fcf7ed' }}
     >
       {/* STICKY TIMELINE AREA */}
-      <div 
+      <div
         className="sticky top-0 w-full overflow-hidden flex flex-col items-center justify-center border-b"
         style={{
           height: '100vh',
@@ -189,7 +205,7 @@ export default function StorySection() {
         }}
       >
         {/* Lowercase Title */}
-        <h2 
+        <h2
           className="font-display text-text-primary text-center select-none"
           style={{
             fontSize: isMobile ? '3.6rem' : '6rem',
@@ -204,48 +220,29 @@ export default function StorySection() {
         {/* RESPONSIVE LAYOUT CONTAINER */}
         {isMobile ? (
           /* MOBILE LAYOUT: Text on top, stacked cards below */
-          <div 
+          <div
             className="w-full flex flex-col items-center justify-start px-6"
             style={{ height: 'calc(100vh - 180px)' }}
           >
             {/* TEXT CONTAINER (Sticky text fading in/out) */}
-            <div 
-              className="relative w-full text-center" 
+            <div
+              className="relative w-full text-center"
               style={{ height: '150px', marginBottom: '1rem' }}
             >
-              {/* Chapter 1 */}
-              <div style={getChapterTextStyle(0)}>
-                <span className="font-bold text-text-primary text-sm uppercase block tracking-wider" style={{ marginBottom: '0.5rem' }}>
-                  chapter one: how we met
-                </span>
-                <p className="font-light leading-relaxed" style={{ fontSize: '13.5px', color: 'var(--text-muted)', maxWidth: '400px', margin: '0 auto' }}>
-                  We met at university, became fast friends, and eventually realized the best parts of every week were the parts we spent together.
-                </p>
-              </div>
-
-              {/* Chapter 2 */}
-              <div style={getChapterTextStyle(1)}>
-                <span className="font-bold text-text-primary text-sm uppercase block tracking-wider" style={{ marginBottom: '0.5rem' }}>
-                  chapter two: falling in love
-                </span>
-                <p className="font-light leading-relaxed" style={{ fontSize: '13.5px', color: 'var(--text-muted)', maxWidth: '400px', margin: '0 auto' }}>
-                  Toronto became our home base for late dinners, weekend walks, shared routines, and all of the small moments that made life feel bigger.
-                </p>
-              </div>
-
-              {/* Chapter 3 */}
-              <div style={getChapterTextStyle(2)}>
-                <span className="font-bold text-text-primary text-sm uppercase block tracking-wider" style={{ marginBottom: '0.5rem' }}>
-                  chapter three: the next step
-                </span>
-                <p className="font-light leading-relaxed" style={{ fontSize: '13.5px', color: 'var(--text-muted)', maxWidth: '400px', margin: '0 auto' }}>
-                  A trip, a question, a very easy yes, and suddenly the future we had been imagining became something we could invite everyone into.
-                </p>
-              </div>
+              {chapters.map((ch, i) => (
+                <div key={i} style={getChapterTextStyle(i)}>
+                  <span className="font-bold text-text-primary text-sm uppercase block tracking-wider" style={{ marginBottom: '0.5rem' }}>
+                    {ch.title}
+                  </span>
+                  <p className="font-light leading-relaxed" style={{ fontSize: '13.5px', color: 'var(--text-muted)', maxWidth: '400px', margin: '0 auto' }}>
+                    {ch.body}
+                  </p>
+                </div>
+              ))}
             </div>
 
             {/* STACK AREA (Polaroids building up) */}
-            <div 
+            <div
               className="relative flex items-center justify-center w-full"
               style={{ height: `${polaroidHeight + 40}px` }}
             >
@@ -269,13 +266,13 @@ export default function StorySection() {
                     }}
                   >
                     <div className="polaroid-image-wrapper w-full h-[76%] overflow-hidden rounded-[4px] bg-[#fcf7ed]">
-                      <img 
-                        src={card.url} 
-                        alt={card.caption} 
+                      <img
+                        src={card.url}
+                        alt={card.caption}
                         className="w-full h-full object-cover select-none pointer-events-none"
                       />
                     </div>
-                    <div 
+                    <div
                       className="font-display italic text-center select-none"
                       style={{
                         fontSize: '1.2rem',
@@ -292,31 +289,23 @@ export default function StorySection() {
           </div>
         ) : (
           /* DESKTOP LAYOUT: Text left/right alternating, polaroids centered */
-          <div 
-            className="w-full flex items-center justify-between px-12 mx-auto" 
+          <div
+            className="w-full flex items-center justify-between px-12 mx-auto"
             style={{ maxWidth: '1200px', height: '65vh' }}
           >
             {/* LEFT COLUMN: Chapter 1 and Chapter 3 Text */}
             <div className="relative" style={{ width: '28%', height: '240px' }}>
-              {/* Chapter 1 Text */}
-              <div style={getChapterTextStyle(0)}>
-                <span className="font-bold text-text-primary tracking-wide block lowercase" style={{ fontSize: '1.25rem', marginBottom: '0.85rem' }}>
-                  chapter one: how we met
-                </span>
-                <p className="font-light leading-relaxed text-text-muted" style={{ fontSize: '15px', color: 'var(--text-muted)' }}>
-                  We met at university, became fast friends, and eventually realized the best parts of every week were the parts we spent together.
-                </p>
-              </div>
-
-              {/* Chapter 3 Text */}
-              <div style={getChapterTextStyle(2)}>
-                <span className="font-bold text-text-primary tracking-wide block lowercase" style={{ fontSize: '1.25rem', marginBottom: '0.85rem' }}>
-                  chapter three: the next step
-                </span>
-                <p className="font-light leading-relaxed text-text-muted" style={{ fontSize: '15px', color: 'var(--text-muted)' }}>
-                  A trip, a question, a very easy yes, and suddenly the future we had been imagining became something we could invite everyone into.
-                </p>
-              </div>
+              {/* Chapters 1 & 3 sit in the left column */}
+              {[0, 2].map((i) => (
+                <div key={i} style={getChapterTextStyle(i)}>
+                  <span className="font-bold text-text-primary tracking-wide block lowercase" style={{ fontSize: '1.25rem', marginBottom: '0.85rem' }}>
+                    {chapters[i].title}
+                  </span>
+                  <p className="font-light leading-relaxed text-text-muted" style={{ fontSize: '15px', color: 'var(--text-muted)' }}>
+                    {chapters[i].body}
+                  </p>
+                </div>
+              ))}
             </div>
 
             {/* CENTER COLUMN: The Stacking Polaroid Pile */}
@@ -340,13 +329,13 @@ export default function StorySection() {
                     }}
                   >
                     <div className="polaroid-image-wrapper w-full h-[76%] overflow-hidden rounded-[4px] bg-[#fcf7ed]">
-                      <img 
-                        src={card.url} 
-                        alt={card.caption} 
+                      <img
+                        src={card.url}
+                        alt={card.caption}
                         className="w-full h-full object-cover select-none pointer-events-none"
                       />
                     </div>
-                    <div 
+                    <div
                       className="font-display italic text-center select-none"
                       style={{
                         fontSize: '1.4rem',
@@ -363,13 +352,13 @@ export default function StorySection() {
 
             {/* RIGHT COLUMN: Chapter 2 Text */}
             <div className="relative" style={{ width: '28%', height: '240px' }}>
-              {/* Chapter 2 Text */}
+              {/* Chapter 2 sits in the right column */}
               <div style={getChapterTextStyle(1)}>
                 <span className="font-bold text-text-primary tracking-wide block lowercase" style={{ fontSize: '1.25rem', marginBottom: '0.85rem' }}>
-                  chapter two: falling in love
+                  {chapters[1].title}
                 </span>
                 <p className="font-light leading-relaxed text-text-muted" style={{ fontSize: '15px', color: 'var(--text-muted)' }}>
-                  Toronto became our home base for late dinners, weekend walks, shared routines, and all of the small moments that made life feel bigger.
+                  {chapters[1].body}
                 </p>
               </div>
             </div>
