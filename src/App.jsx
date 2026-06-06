@@ -1,5 +1,8 @@
 import React from 'react';
 import ScrollCollage from './components/ScrollCollage';
+import CountdownSection from './components/CountdownSection';
+import StorySection from './components/StorySection';
+import EventCountdown from './components/EventCountdown';
 import DetailsSection from './components/DetailsSection';
 import FAQSection from './components/FAQSection';
 import RSVPForm from './components/RSVPForm';
@@ -7,30 +10,30 @@ import RSVPForm from './components/RSVPForm';
 function App() {
   return (
     <div id="top" className="min-h-screen flex flex-col bg-[#fcf7ed]">
-      
+
       {/* Scroll-driven Collage Hero Section */}
       <ScrollCollage />
 
-      {/* Soft gradient spacer transition from off-white hero to white details */}
-      <div 
-        className="w-full relative z-20" 
-        style={{ 
-          height: '160px', 
-          backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)' 
-        }} 
+      {/* Soft gradient spacer transition from off-white hero to white countdown */}
+      <div
+        className="w-full relative z-20"
+        style={{
+          height: '160px',
+          backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)'
+        }}
       />
 
       {/* Main Content Sections */}
       <main className="w-full relative z-30">
-        
-        {/* Details & Logistics */}
-        <DetailsSection />
 
-        {/* FAQ Accordion */}
-        <FAQSection />
+        {/* Countdown to Forever Statement */}
+        <CountdownSection />
 
-        {/* Interactive RSVP Form */}
-        <RSVPForm />
+        {/* Our Story Section */}
+        <StorySection />
+
+        {/* Event Countdown Section */}
+        <EventCountdown />
 
       </main>
 
@@ -39,11 +42,11 @@ function App() {
         <div className="max-w-[600px] mx-auto flex flex-col items-center gap-4">
           <p className="font-display italic text-3xl text-accent-color">P&N</p>
           <p className="text-xs text-text-muted font-medium uppercase tracking-[0.2em]">
-            June 18, 2027 • Big Sur, California
+            9–11 February 2027 • Jaipur, India
           </p>
           <div className="h-[1px] w-12 bg-accent-color/30 my-2"></div>
           <p className="text-[11px] text-text-muted/65 font-light">
-            Made with love for Palak and Neelesh.
+            Made with love by Palak and Neelesh.
           </p>
         </div>
       </footer>
@@ -53,3 +56,4 @@ function App() {
 }
 
 export default App;
+

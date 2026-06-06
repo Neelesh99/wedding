@@ -123,14 +123,19 @@ export default function ScrollCollage() {
     <div ref={containerRef} className="relative w-full" style={{ height: '230vh' }}>
       
       {/* MORPHING FLOATING NAVBAR */}
-      <nav className="fixed left-0 right-0 top-0 z-50 px-4 pointer-events-none flex justify-center">
+      <nav
+        className="fixed left-0 right-0 top-0 z-50 pointer-events-none"
+        style={{ height: '80px' }}
+      >
         <div 
           className="pointer-events-auto flex items-center justify-center transition-all duration-300 ease-out"
           style={{
-            width: '100%',
-            maxWidth: `${1200 - (1200 - 280) * navProgress}px`,
+            position: 'absolute',
+            top: '16px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: `min(100vw, ${1200 - (1200 - 280) * navProgress}px)`,
             height: '48px',
-            marginTop: '16px',
             borderRadius: `${navProgress * 9999}px`,
             backgroundColor: `rgba(255, 255, 255, ${navProgress * 0.85})`,
             backdropFilter: navProgress > 0 ? `blur(${navProgress * 16}px)` : 'none',
