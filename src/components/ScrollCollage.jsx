@@ -71,19 +71,19 @@ export default function ScrollCollage() {
 
   // Responsive dimensions for elements in the collage (in pixels)
   const sizes = {
-    main: isMobile ? { w: 240, h: 340 } : { w: 360, h: 500 },
+    main: isMobile ? { w: 240, h: 340 } : { w: 500, h: 520 },
     beach: isMobile 
       ? { w: 120, h: 100, right: 'calc(50% + 130px + 12px)', top: 'calc(50% - 180px)' } 
-      : { w: 280, h: 240, right: 'calc(50% + 180px + 24px)', top: 'calc(50% - 270px)' },
+      : { w: 280, h: 240, right: 'calc(50% + 250px + 24px)', top: 'calc(50% - 270px)' },
     dancing: isMobile 
       ? { w: 100, h: 70, right: 'calc(50% + 130px + 12px)', top: 'calc(50% - 10px)' } 
-      : { w: 245, h: 165, right: 'calc(50% + 180px + 24px)', top: 'calc(50% - 10px)' },
+      : { w: 245, h: 165, right: 'calc(50% + 250px + 24px)', top: 'calc(50% - 10px)' },
     canyon: isMobile 
       ? { w: 100, h: 70, left: 'calc(50% + 130px + 12px)', top: 'calc(50% - 40px)' } 
-      : { w: 220, h: 160, left: 'calc(50% + 180px + 24px)', top: 'calc(50% - 60px)' },
+      : { w: 220, h: 160, left: 'calc(50% + 250px + 24px)', top: 'calc(50% - 60px)' },
     feet: isMobile 
       ? { w: 120, h: 120, left: 'calc(50% + 130px + 12px)', top: 'calc(50% + 80px)' } 
-      : { w: 280, h: 280, left: 'calc(50% + 180px + 24px)', top: 'calc(50% + 120px)' },
+      : { w: 280, h: 280, left: 'calc(50% + 250px + 24px)', top: 'calc(50% + 120px)' },
   };
 
   // Main Card Dimensions Logic
