@@ -48,6 +48,9 @@ export default function ScrollCollage() {
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
   const eased = easeOutCubic(scrollProgress);
 
+  // Morphing navbar progress (completes transition over first 12% of scroll)
+  const navProgress = Math.min(1, scrollProgress / 0.12);
+
   // Custom non-linear easing curves for horizontal (X) and vertical (Y) trajectories per card
   // This gives each card its own unique path and speed, creating a curved "invasion" effect.
   
@@ -87,12 +90,14 @@ export default function ScrollCollage() {
   };
 
   // Main Card Dimensions Logic
-  // At p=0, Main Card matches viewport size. At p=1, matches sizes.main.
-  const mainCardWidth = viewport.w - (viewport.w - sizes.main.w) * scrollProgress;
-  const mainCardHeight = viewport.h - (viewport.h - sizes.main.h) * scrollProgress;
+  // At p=0, Main Card is viewport size minus 32px to create a 16px gutter with rounded corners. At p=1, matches sizes.main.
+  const startW = viewport.w - 32;
+  const startH = viewport.h - 32;
+  const mainCardWidth = startW - (startW - sizes.main.w) * scrollProgress;
+  const mainCardHeight = startH - (startH - sizes.main.h) * scrollProgress;
   
-  // Interpolate border radius of main card: 0px when full screen, 32px when in collage
-  const mainCardBorderRadius = scrollProgress * 32;
+  // Border radius of main card is constantly 32px to keep it rounded at all scroll positions
+  const mainCardBorderRadius = 32;
 
   // Horizontal translation offset for side images flying in
   const translateOffset = viewport.w * 0.45;
@@ -117,68 +122,30 @@ export default function ScrollCollage() {
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '230vh' }}>
       
-      {/* FIXED FLOATING NAVBAR (appears on scroll) */}
-      <nav 
-        className="fixed left-0 right-0 top-0 z-50 px-4 md:px-8 pointer-events-none"
-        style={{ 
-          opacity: floatingNavOpacity,
-          transform: `translateY(${floatingNavY}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      >
-        <div className="mx-auto mt-4 w-full max-w-[1200px] glass-nav pointer-events-auto flex items-center justify-between h-14 px-6">
-          <a href="#" className="font-semibold text-lg tracking-wider hover:opacity-75 transition-opacity" onClick={() => scrollToSection('top')}>
-            J&P
-          </a>
-          
-          <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollToSection('details')} className="text-sm font-medium hover:opacity-75 transition-opacity">Travel Logistics</button>
-            <button onClick={() => scrollToSection('details')} className="text-sm font-medium hover:opacity-75 transition-opacity">Registry</button>
-            <button onClick={() => scrollToSection('faq')} className="text-sm font-medium hover:opacity-75 transition-opacity">FAQ</button>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={() => scrollToSection('rsvp')}
-              className="btn-primary text-sm font-semibold tracking-wide py-1.5 px-5"
-            >
-              Submit RSVP
-            </button>
-            
-            {/* Mobile Menu Icon */}
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-              className="p-1 md:hidden hover:bg-black/5 rounded-full transition-colors"
-              aria-label="Toggle Menu"
-            >
-              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
+      {/* MORPHING FLOATING NAVBAR */}
+      <nav className="fixed left-0 right-0 top-0 z-50 px-4 pointer-events-none flex justify-center">
+        <div 
+          className="pointer-events-auto flex items-center justify-center transition-all duration-300 ease-out"
+          style={{
+            width: '100%',
+            maxWidth: `${1200 - (1200 - 280) * navProgress}px`,
+            height: '48px',
+            marginTop: '16px',
+            borderRadius: `${navProgress * 9999}px`,
+            backgroundColor: `rgba(255, 255, 255, ${navProgress * 0.85})`,
+            backdropFilter: navProgress > 0 ? `blur(${navProgress * 16}px)` : 'none',
+            WebkitBackdropFilter: navProgress > 0 ? `blur(${navProgress * 16}px)` : 'none',
+            border: navProgress > 0 ? `1px solid rgba(255, 255, 255, ${navProgress * 0.4})` : '1px solid transparent',
+            boxShadow: navProgress > 0.5 ? '0 8px 24px rgba(47, 36, 27, 0.08)' : 'none',
+            color: '#2f241b',
+            paddingLeft: '24px',
+            paddingRight: '24px',
+          }}
+        >
+          <span className="font-semibold text-sm md:text-base tracking-[0.25em] uppercase whitespace-nowrap">
+            NeelFoundHisPal
+          </span>
         </div>
-
-        {/* Mobile Dropdown */}
-        {mobileMenuOpen && (
-          <div className="absolute top-16 right-4 left-4 bg-white/95 backdrop-blur-md border border-black/5 rounded-2xl p-6 shadow-xl flex flex-col gap-4 pointer-events-auto md:hidden">
-            <button 
-              onClick={() => { setMobileMenuOpen(false); scrollToSection('details'); }} 
-              className="text-left py-2 font-medium text-lg border-b border-black/5"
-            >
-              Travel Logistics
-            </button>
-            <button 
-              onClick={() => { setMobileMenuOpen(false); scrollToSection('details'); }} 
-              className="text-left py-2 font-medium text-lg border-b border-black/5"
-            >
-              Registry
-            </button>
-            <button 
-              onClick={() => { setMobileMenuOpen(false); scrollToSection('faq'); }} 
-              className="text-left py-2 font-medium text-lg"
-            >
-              FAQ
-            </button>
-          </div>
-        )}
       </nav>
 
       {/* STICKY CONTAINER FOR ANIMATION */}
@@ -238,7 +205,7 @@ export default function ScrollCollage() {
             {/* Background Image inside Main Card */}
             <img 
               src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200" 
-              alt="Jim & Pam proposal" 
+              alt="Palak & Neelesh proposal" 
               className="absolute inset-0 w-full h-full object-cover"
               style={{
                 transform: `scale(${1.1 - 0.1 * eased})`,
@@ -249,31 +216,13 @@ export default function ScrollCollage() {
             {/* Dark gradient overlay for typography legibility */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/30" />
 
-            {/* INTEGRATED NAVBAR INSIDE HERO CARD (fades out on scroll) */}
-            <div 
-              className="absolute top-0 left-0 right-0 p-6 flex items-center justify-between text-white z-30"
-              style={{ 
-                opacity: insideNavOpacity,
-                pointerEvents: scrollProgress > 0.05 ? 'none' : 'auto'
-              }}
-            >
-              <span className="font-semibold text-lg tracking-wider">J&P</span>
-              <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-                <button onClick={() => scrollToSection('details')} className="hover:opacity-85 transition-opacity">Travel Logistics</button>
-                <button onClick={() => scrollToSection('details')} className="hover:opacity-85 transition-opacity">Registry</button>
-                <button onClick={() => scrollToSection('faq')} className="hover:opacity-85 transition-opacity">FAQ</button>
-              </div>
-              <button 
-                onClick={() => scrollToSection('rsvp')}
-                className="btn-primary text-sm font-semibold tracking-wide py-1.5 px-5"
-                style={{ backgroundColor: '#8a5a2b', color: '#fff9f1' }}
-              >
-                Submit RSVP
-              </button>
-            </div>
+            {/* Inside navbar removed in favor of morphing navbar */}
 
             {/* HERO TYPOGRAPHY OVERLAY */}
-            <div className="absolute inset-x-0 bottom-16 flex flex-col items-center justify-center z-20 pointer-events-none px-6 text-center">
+            <div 
+              className="absolute inset-x-0 flex flex-col items-center justify-center z-20 pointer-events-none px-6 text-center"
+              style={{ bottom: '5rem' }}
+            >
               <h1 
                 className="text-white font-display italic text-center"
                 style={{
@@ -285,19 +234,26 @@ export default function ScrollCollage() {
                   whiteSpace: 'nowrap'
                 }}
               >
-                Jim & Pam
+                Palak & Neelesh
               </h1>
             </div>
 
             {/* SCROLL PROMPT prompt (fades out on scroll) */}
             <div 
-              className="absolute inset-x-0 bottom-6 flex items-center justify-between px-8 text-[10px] md:text-xs font-semibold uppercase tracking-[0.4em] text-white/90 z-20 pointer-events-none"
-              style={{ opacity: scrollPromptOpacity }}
+              className="absolute flex flex-col items-center gap-2 z-20 pointer-events-none"
+              style={{ 
+                opacity: scrollPromptOpacity,
+                bottom: '2.5rem',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: 'max-content',
+                color: 'rgba(255, 255, 255, 0.9)'
+              }}
             >
-              <div className="flex items-center gap-1">
-                <ArrowDown size={14} className="animate-bounce" />
-              </div>
-              <span>Scroll to explore</span>
+              <span className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.3em]">
+                Scroll to explore more
+              </span>
+              <ArrowDown size={16} className="animate-bounce mt-1" />
             </div>
           </div>
 

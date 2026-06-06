@@ -35,7 +35,7 @@ export default function DetailsSection() {
     {
       icon: <Hotel className="text-accent-color" size={24} />,
       title: "Accommodations",
-      desc: "We have blocked rooms at the Redwood Mountain Lodge. Please mention the 'Jim & Pam Wedding' when booking before April 1st to receive our group rate."
+      desc: "We have blocked rooms at the Redwood Mountain Lodge. Please mention the 'Palak & Neelesh Wedding' when booking before April 1st to receive our group rate."
     },
     {
       icon: <Info className="text-accent-color" size={24} />,
