@@ -48,32 +48,54 @@ export default function ScrollCollage() {
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
   const eased = easeOutCubic(scrollProgress);
 
+  // Custom non-linear easing curves for horizontal (X) and vertical (Y) trajectories per card
+  // This gives each card its own unique path and speed, creating a curved "invasion" effect.
+  
+  // Beach (top-left) - fast horizontally, slow start/fast end vertically. Starts lower, slides up.
+  const easedBeachX = 1 - Math.pow(1 - scrollProgress, 3.5);
+  const easedBeachY = Math.pow(scrollProgress, 1.8);
+  
+  // Dancing (bottom-left) - medium horizontally, slower vertically. Starts higher, slides down.
+  const easedDancingX = 1 - Math.pow(1 - scrollProgress, 2.2);
+  const easedDancingY = Math.pow(scrollProgress, 1.5);
+
+  // Canyon (top-right) - very fast horizontally, linear/moderate vertically. Starts lower, slides up.
+  const easedCanyonX = 1 - Math.pow(1 - scrollProgress, 3.0);
+  const easedCanyonY = Math.pow(scrollProgress, 1.6);
+
+  // Feet (bottom-right) - late horizontally, very late vertically. Starts higher, slides down.
+  const easedFeetX = 1 - Math.pow(1 - scrollProgress, 1.8);
+  const easedFeetY = Math.pow(scrollProgress, 2.2);
+
   const isMobile = viewport.w < 768;
 
   // Responsive dimensions for elements in the collage (in pixels)
   const sizes = {
     main: isMobile ? { w: 240, h: 340 } : { w: 360, h: 500 },
     beach: isMobile 
-      ? { w: 100, h: 80, left: '2%', top: '15%' } 
-      : { w: 260, h: 190, left: '5%', top: '12%' },
+      ? { w: 120, h: 100, right: 'calc(50% + 130px + 12px)', top: 'calc(50% - 180px)' } 
+      : { w: 280, h: 240, right: 'calc(50% + 180px + 24px)', top: 'calc(50% - 270px)' },
     dancing: isMobile 
-      ? { w: 90, h: 70, left: '3%', bottom: '15%' } 
-      : { w: 230, h: 160, left: '7%', bottom: '14%' },
+      ? { w: 100, h: 70, right: 'calc(50% + 130px + 12px)', top: 'calc(50% - 10px)' } 
+      : { w: 245, h: 165, right: 'calc(50% + 180px + 24px)', top: 'calc(50% - 10px)' },
     canyon: isMobile 
-      ? { w: 90, h: 70, right: '3%', top: '25%' } 
-      : { w: 240, h: 170, right: '6%', top: '24%' },
+      ? { w: 100, h: 70, left: 'calc(50% + 130px + 12px)', top: 'calc(50% - 40px)' } 
+      : { w: 220, h: 160, left: 'calc(50% + 180px + 24px)', top: 'calc(50% - 60px)' },
     feet: isMobile 
-      ? { w: 100, h: 90, right: '2%', bottom: '12%' } 
-      : { w: 250, h: 220, right: '5%', bottom: '10%' },
+      ? { w: 120, h: 120, left: 'calc(50% + 130px + 12px)', top: 'calc(50% + 80px)' } 
+      : { w: 280, h: 280, left: 'calc(50% + 180px + 24px)', top: 'calc(50% + 120px)' },
   };
 
   // Main Card Dimensions Logic
   // At p=0, Main Card matches viewport size. At p=1, matches sizes.main.
-  const mainCardWidth = viewport.w - (viewport.w - sizes.main.w) * eased;
-  const mainCardHeight = viewport.h - (viewport.h - sizes.main.h) * eased;
+  const mainCardWidth = viewport.w - (viewport.w - sizes.main.w) * scrollProgress;
+  const mainCardHeight = viewport.h - (viewport.h - sizes.main.h) * scrollProgress;
   
   // Interpolate border radius of main card: 0px when full screen, 32px when in collage
-  const mainCardBorderRadius = eased * 32;
+  const mainCardBorderRadius = scrollProgress * 32;
+
+  // Horizontal translation offset for side images flying in
+  const translateOffset = viewport.w * 0.45;
 
   // Scroll Prompts and Inside Nav Opacities
   const insideNavOpacity = Math.max(0, 1 - scrollProgress * 12);
@@ -166,51 +188,39 @@ export default function ScrollCollage() {
         <div className="relative w-full max-w-[1200px] h-[85vh] flex items-center justify-center">
 
           {/* BEACH CARD (TOP LEFT) */}
-          <div 
-            className="absolute polaroid-card pointer-events-none select-none z-20"
+          <img 
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600" 
+            alt="Beach sunset" 
+            className="absolute pointer-events-none select-none z-20 object-cover shadow-md"
             style={{
-              width: sizes.beach.w,
-              height: sizes.beach.h,
-              left: sizes.beach.left,
+              width: `${sizes.beach.w}px`,
+              height: `${sizes.beach.h}px`,
+              right: sizes.beach.right,
               top: sizes.beach.top,
-              opacity: eased,
-              transform: `translate3d(${(1 - eased) * -100}vw, ${(1 - eased) * -20}vh, 0) rotate(${-20 + 14 * eased}deg) scale(${0.7 + 0.3 * eased})`,
-              transformOrigin: 'center center'
+              borderRadius: '24px',
+              opacity: 1,
+              transform: `translate3d(${(1 - easedBeachX) * -translateOffset}px, ${(1 - easedBeachY) * 60}px, 0) scale(${0.85 + 0.15 * easedBeachX})`,
+              transformOrigin: 'right center'
             }}
-          >
-            <div className="polaroid-image-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600" 
-                alt="Beach sunset" 
-                className="polaroid-image"
-              />
-            </div>
-            {!isMobile && <div className="polaroid-caption">Beach Side</div>}
-          </div>
+          />
 
           {/* DANCING CARD (BOTTOM LEFT) */}
-          <div 
-            className="absolute polaroid-card pointer-events-none select-none z-20"
+          <img 
+            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600" 
+            alt="Dancing couple" 
+            className="absolute pointer-events-none select-none z-20 object-cover shadow-md"
             style={{
-              width: sizes.dancing.w,
-              height: sizes.dancing.h,
-              left: sizes.dancing.left,
-              bottom: sizes.dancing.bottom,
-              opacity: eased,
-              transform: `translate3d(${(1 - eased) * -100}vw, ${(1 - eased) * 40}vh, 0) rotate(${18 - 14 * eased}deg) scale(${0.7 + 0.3 * eased})`,
-              transformOrigin: 'center center'
+              width: `${sizes.dancing.w}px`,
+              height: `${sizes.dancing.h}px`,
+              right: sizes.dancing.right,
+              top: sizes.dancing.top,
+              borderRadius: '20px',
+              filter: 'grayscale(0.6)',
+              opacity: 1,
+              transform: `translate3d(${(1 - easedDancingX) * -translateOffset}px, ${(1 - easedDancingY) * -60}px, 0) scale(${0.85 + 0.15 * easedDancingX})`,
+              transformOrigin: 'right center'
             }}
-          >
-            <div className="polaroid-image-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600" 
-                alt="Dancing couple" 
-                className="polaroid-image"
-                style={{ filter: 'grayscale(0.6)' }}
-              />
-            </div>
-            {!isMobile && <div className="polaroid-caption">First Dance</div>}
-          </div>
+          />
 
           {/* MAIN HERO CARD (CENTERED) */}
           <div 
@@ -268,8 +278,8 @@ export default function ScrollCollage() {
                 className="text-white font-display italic text-center"
                 style={{
                   fontSize: isMobile 
-                    ? `${2.2 + (3.5 - 2.2) * (1 - eased)}rem` 
-                    : `${2.8 + (6.5 - 2.8) * (1 - eased)}rem`,
+                    ? `${2.2 + (3.5 - 2.2) * (1 - scrollProgress)}rem` 
+                    : `${2.8 + (6.5 - 2.8) * (1 - scrollProgress)}rem`,
                   lineHeight: 1.1,
                   textShadow: '0 2px 10px rgba(0,0,0,0.35)',
                   whiteSpace: 'nowrap'
@@ -292,50 +302,38 @@ export default function ScrollCollage() {
           </div>
 
           {/* CANYON CARD (TOP RIGHT) */}
-          <div 
-            className="absolute polaroid-card pointer-events-none select-none z-20"
+          <img 
+            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=600" 
+            alt="Canyon lookout" 
+            className="absolute pointer-events-none select-none z-20 object-cover shadow-md"
             style={{
-              width: sizes.canyon.w,
-              height: sizes.canyon.h,
-              right: sizes.canyon.right,
+              width: `${sizes.canyon.w}px`,
+              height: `${sizes.canyon.h}px`,
+              left: sizes.canyon.left,
               top: sizes.canyon.top,
-              opacity: eased,
-              transform: `translate3d(${(1 - eased) * 100}vw, ${(1 - eased) * -15}vh, 0) rotate(${20 - 14 * eased}deg) scale(${0.7 + 0.3 * eased})`,
-              transformOrigin: 'center center'
+              borderRadius: '20px',
+              opacity: 1,
+              transform: `translate3d(${(1 - easedCanyonX) * translateOffset}px, ${(1 - easedCanyonY) * 50}px, 0) scale(${0.85 + 0.15 * easedCanyonX})`,
+              transformOrigin: 'left center'
             }}
-          >
-            <div className="polaroid-image-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=600" 
-                alt="Canyon lookout" 
-                className="polaroid-image"
-              />
-            </div>
-            {!isMobile && <div className="polaroid-caption">The View</div>}
-          </div>
+          />
 
           {/* FEET CARD (BOTTOM RIGHT) */}
-          <div 
-            className="absolute polaroid-card pointer-events-none select-none z-20"
+          <img 
+            src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600" 
+            alt="Hiking legs" 
+            className="absolute pointer-events-none select-none z-20 object-cover shadow-md"
             style={{
-              width: sizes.feet.w,
-              height: sizes.feet.h,
-              right: sizes.feet.right,
-              bottom: sizes.feet.bottom,
-              opacity: eased,
-              transform: `translate3d(${(1 - eased) * 100}vw, ${(1 - eased) * 45}vh, 0) rotate(${-18 + 14 * eased}deg) scale(${0.7 + 0.3 * eased})`,
-              transformOrigin: 'center center'
+              width: `${sizes.feet.w}px`,
+              height: `${sizes.feet.h}px`,
+              left: sizes.feet.left,
+              top: sizes.feet.top,
+              borderRadius: '24px',
+              opacity: 1,
+              transform: `translate3d(${(1 - easedFeetX) * translateOffset}px, ${(1 - easedFeetY) * -70}px, 0) scale(${0.85 + 0.15 * easedFeetX})`,
+              transformOrigin: 'left center'
             }}
-          >
-            <div className="polaroid-image-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600" 
-                alt="Hiking legs" 
-                className="polaroid-image"
-              />
-            </div>
-            {!isMobile && <div className="polaroid-caption">Adventure</div>}
-          </div>
+          />
 
         </div>
 
