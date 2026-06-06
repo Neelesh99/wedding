@@ -2,6 +2,7 @@ import React from 'react';
 import ScrollCollage from './components/ScrollCollage';
 import CountdownSection from './components/CountdownSection';
 import StorySection from './components/StorySection';
+import EventCountdown from './components/EventCountdown';
 import DetailsSection from './components/DetailsSection';
 import FAQSection from './components/FAQSection';
 import RSVPForm from './components/RSVPForm';
@@ -28,8 +29,11 @@ function App() {
         {/* Countdown to Forever Statement */}
         <CountdownSection />
 
-        {/* Our Story Placeholder Section */}
+        {/* Our Story Section */}
         <StorySection />
+
+        {/* Event Countdown Section */}
+        <EventCountdown />
 
         {/* Soft gradient spacer transition from off-white story to white details */}
         <div 
@@ -56,7 +60,7 @@ function App() {
         <div className="max-w-[600px] mx-auto flex flex-col items-center gap-4">
           <p className="font-display italic text-3xl text-accent-color">P&N</p>
           <p className="text-xs text-text-muted font-medium uppercase tracking-[0.2em]">
-            June 18, 2027 • Big Sur, California
+            9–11 February 2027 • Jaipur, India
           </p>
           <div className="h-[1px] w-12 bg-accent-color/30 my-2"></div>
           <p className="text-[11px] text-text-muted/65 font-light">
