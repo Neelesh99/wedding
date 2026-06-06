@@ -1,5 +1,7 @@
 import React from 'react';
 import ScrollCollage from './components/ScrollCollage';
+import CountdownSection from './components/CountdownSection';
+import StorySection from './components/StorySection';
 import DetailsSection from './components/DetailsSection';
 import FAQSection from './components/FAQSection';
 import RSVPForm from './components/RSVPForm';
@@ -11,7 +13,7 @@ function App() {
       {/* Scroll-driven Collage Hero Section */}
       <ScrollCollage />
 
-      {/* Soft gradient spacer transition from off-white hero to white details */}
+      {/* Soft gradient spacer transition from off-white hero to white countdown */}
       <div 
         className="w-full relative z-20" 
         style={{ 
@@ -23,6 +25,21 @@ function App() {
       {/* Main Content Sections */}
       <main className="w-full relative z-30">
         
+        {/* Countdown to Forever Statement */}
+        <CountdownSection />
+
+        {/* Our Story Placeholder Section */}
+        <StorySection />
+
+        {/* Soft gradient spacer transition from off-white story to white details */}
+        <div 
+          className="w-full relative z-20" 
+          style={{ 
+            height: '160px', 
+            backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)' 
+          }} 
+        />
+
         {/* Details & Logistics */}
         <DetailsSection />
 
@@ -53,3 +70,4 @@ function App() {
 }
 
 export default App;
+
