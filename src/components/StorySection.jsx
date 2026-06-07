@@ -305,7 +305,7 @@ export default function StorySection() {
                         transform: `translate3d(-50%, 0, 0) rotate(${card.stickerAngle || 0}deg) scale(${isActive ? 1 : 1.5})`,
                         opacity: isActive ? 1 : 0,
                         zIndex: 30,
-                        transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s, opacity 0.4s ease 0.8s'
+                        transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s, opacity 0.4s ease 0.4s'
                       }}
                     />
                     <div className="polaroid-image-wrapper w-full h-[76%] overflow-hidden rounded-[4px] bg-[#fcf7ed]">
@@ -384,7 +384,7 @@ export default function StorySection() {
                         transform: `translate3d(-50%, 0, 0) rotate(${card.stickerAngle || 0}deg) scale(${isActive ? 1 : 1.5})`,
                         opacity: isActive ? 1 : 0,
                         zIndex: 30,
-                        transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s, opacity 0.4s ease 0.8s'
+                        transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s, opacity 0.4s ease 0.4s'
                       }}
                     />
                     <div className="polaroid-image-wrapper w-full h-[76%] overflow-hidden rounded-[4px] bg-[#fcf7ed]">
