@@ -90,11 +90,11 @@ export default function ScrollCollage() {
       ? { w: 120, h: 120, left: 'calc(50% + 120px - 45px)', top: 'calc(50% + 70px)' } 
       : { w: 280, h: 280, left: 'calc(50% + 250px + 24px)', top: 'calc(50% + 120px)' },
     peacockSticker: isMobile
-      ? { w: 90, h: 90, left: 'calc(50% + 130px)', top: 'calc(50% - 200px)' }
-      : { w: 160, h: 160, left: 'calc(50% + 270px)', top: 'calc(50% - 290px)' },
+      ? { w: 60, h: 100, left: 'calc(50% + 130px)', top: 'calc(50% - 200px)' }
+      : { w: 110, h: 180, left: 'calc(50% + 270px)', top: 'calc(50% - 290px)' },
     elephantSticker: isMobile
-      ? { w: 90, h: 90, right: 'calc(50% + 130px)', top: 'calc(50% + 110px)' }
-      : { w: 160, h: 160, right: 'calc(50% + 270px)', top: 'calc(50% + 180px)' },
+      ? { w: 75, h: 90, right: 'calc(50% + 130px)', top: 'calc(50% + 110px)' }
+      : { w: 135, h: 160, right: 'calc(50% + 270px)', top: 'calc(50% + 180px)' },
   };
 
   // Main Card Dimensions Logic
