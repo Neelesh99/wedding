@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowDown } from 'lucide-react';
+import peacockSticker from '../assets/images/stickers/peacock_sticker.png';
+import elephantSticker from '../assets/images/stickers/elephant_sticker.png';
 
 export default function ScrollCollage() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -87,6 +89,12 @@ export default function ScrollCollage() {
     feet: isMobile 
       ? { w: 120, h: 120, left: 'calc(50% + 120px - 45px)', top: 'calc(50% + 70px)' } 
       : { w: 280, h: 280, left: 'calc(50% + 250px + 24px)', top: 'calc(50% + 120px)' },
+    peacockSticker: isMobile
+      ? { w: 90, h: 90, left: 'calc(50% + 130px)', top: 'calc(50% - 200px)' }
+      : { w: 160, h: 160, left: 'calc(50% + 270px)', top: 'calc(50% - 290px)' },
+    elephantSticker: isMobile
+      ? { w: 90, h: 90, right: 'calc(50% + 130px)', top: 'calc(50% + 110px)' }
+      : { w: 160, h: 160, right: 'calc(50% + 270px)', top: 'calc(50% + 180px)' },
   };
 
   // Main Card Dimensions Logic
@@ -118,6 +126,13 @@ export default function ScrollCollage() {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Stickers animation values
+  const easedSticker = Math.min(1, Math.max(0, scrollProgress));
+  const peacockOpacity = Math.min(1, scrollProgress * 2.5);
+  const peacockTransform = `translate3d(${(1 - easedSticker) * 120}px, ${(1 - easedSticker) * -120}px, 0) rotate(${45 - 55 * easedSticker}deg) scale(${1.5 - 0.5 * easedSticker})`;
+  const elephantOpacity = Math.min(1, scrollProgress * 2.5);
+  const elephantTransform = `translate3d(${(1 - easedSticker) * -120}px, ${(1 - easedSticker) * 120}px, 0) rotate(${-45 + 53 * easedSticker}deg) scale(${1.5 - 0.5 * easedSticker})`;
 
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '230vh' }}>
@@ -297,6 +312,40 @@ export default function ScrollCollage() {
               transform: `translate3d(${(1 - easedFeetX) * translateOffset}px, ${(1 - easedFeetY) * -70}px, 0) scale(${0.85 + 0.15 * easedFeetX})`,
               transformOrigin: 'left center',
               zIndex: isMobile ? 5 : 20
+            }}
+          />
+
+          {/* PEACOCK STICKER (TOP RIGHT) */}
+          <img 
+            src={peacockSticker} 
+            alt="Peacock decoration sticker" 
+            className="absolute pointer-events-none select-none object-contain"
+            style={{
+              width: `${sizes.peacockSticker.w}px`,
+              height: `${sizes.peacockSticker.h}px`,
+              left: sizes.peacockSticker.left,
+              top: sizes.peacockSticker.top,
+              opacity: peacockOpacity,
+              transform: peacockTransform,
+              transformOrigin: 'center center',
+              zIndex: 25
+            }}
+          />
+
+          {/* ELEPHANT STICKER (BOTTOM LEFT) */}
+          <img 
+            src={elephantSticker} 
+            alt="Elephant decoration sticker" 
+            className="absolute pointer-events-none select-none object-contain"
+            style={{
+              width: `${sizes.elephantSticker.w}px`,
+              height: `${sizes.elephantSticker.h}px`,
+              right: sizes.elephantSticker.right,
+              top: sizes.elephantSticker.top,
+              opacity: elephantOpacity,
+              transform: elephantTransform,
+              transformOrigin: 'center center',
+              zIndex: 25
             }}
           />
 

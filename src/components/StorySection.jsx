@@ -1,4 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
+import flowerSticker from '../assets/images/stickers/flower_sticker.png';
+import bananaLeaf from '../assets/images/stickers/banana_leaf.png';
+import pohaSticker from '../assets/images/stickers/poha_sticker.png';
+import coconutSticker from '../assets/images/stickers/coconut_sticker.png';
+import autoSticker from '../assets/images/stickers/auto_sticker.png';
+import autoOldSticker from '../assets/images/stickers/auto_old_sticker.png';
+import peacockSticker from '../assets/images/stickers/peacock_sticker.png';
+import elephantSticker from '../assets/images/stickers/elephant_sticker.png';
+import templeSticker from '../assets/images/stickers/temple_sticker.png';
 
 export default function StorySection() {
   const containerRef = useRef(null);
@@ -47,7 +56,9 @@ export default function StorySection() {
       trigger: 0,
       angle: -5,
       x: -12,
-      y: -10
+      y: -10,
+      sticker: flowerSticker,
+      stickerAngle: -10,
     },
     {
       id: 1,
@@ -56,7 +67,9 @@ export default function StorySection() {
       trigger: 0.12,
       angle: 4,
       x: 10,
-      y: 6
+      y: 6,
+      sticker: bananaLeaf,
+      stickerAngle: 15,
     },
     {
       id: 2,
@@ -65,7 +78,9 @@ export default function StorySection() {
       trigger: 0.22,
       angle: -2,
       x: -6,
-      y: -4
+      y: -4,
+      sticker: pohaSticker,
+      stickerAngle: -8,
     },
     {
       id: 3,
@@ -74,7 +89,9 @@ export default function StorySection() {
       trigger: 0.35,
       angle: 3,
       x: 12,
-      y: -12
+      y: -12,
+      sticker: coconutSticker,
+      stickerAngle: 20,
     },
     {
       id: 4,
@@ -83,7 +100,9 @@ export default function StorySection() {
       trigger: 0.45,
       angle: -6,
       x: -14,
-      y: 10
+      y: 10,
+      sticker: autoSticker,
+      stickerAngle: -15,
     },
     {
       id: 5,
@@ -92,7 +111,9 @@ export default function StorySection() {
       trigger: 0.55,
       angle: 2,
       x: 8,
-      y: 4
+      y: 4,
+      sticker: autoOldSticker,
+      stickerAngle: 10,
     },
     {
       id: 6,
@@ -101,7 +122,9 @@ export default function StorySection() {
       trigger: 0.68,
       angle: -4,
       x: -8,
-      y: -8
+      y: -8,
+      sticker: peacockSticker,
+      stickerAngle: -5,
     },
     {
       id: 7,
@@ -110,7 +133,9 @@ export default function StorySection() {
       trigger: 0.78,
       angle: 5,
       x: 14,
-      y: 12
+      y: 12,
+      sticker: elephantSticker,
+      stickerAngle: 18,
     },
     {
       id: 8,
@@ -119,7 +144,9 @@ export default function StorySection() {
       trigger: 0.88,
       angle: -1,
       x: 0,
-      y: 0
+      y: 0,
+      sticker: templeSticker,
+      stickerAngle: 0,
     }
   ];
 
@@ -265,6 +292,22 @@ export default function StorySection() {
                       pointerEvents: isActive ? 'auto' : 'none',
                     }}
                   >
+                    {/* Sticker element sticking the photo */}
+                    <img 
+                      src={card.sticker} 
+                      alt="Sticker decorator" 
+                      className="absolute pointer-events-none select-none object-contain"
+                      style={{
+                        left: '50%',
+                        top: '-20px',
+                        width: '45px',
+                        height: '45px',
+                        transform: `translate3d(-50%, 0, 0) rotate(${card.stickerAngle || 0}deg) scale(${isActive ? 1 : 1.5})`,
+                        opacity: isActive ? 1 : 0,
+                        zIndex: 30,
+                        transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s, opacity 0.4s ease 0.8s'
+                      }}
+                    />
                     <div className="polaroid-image-wrapper w-full h-[76%] overflow-hidden rounded-[4px] bg-[#fcf7ed]">
                       <img
                         src={card.url}
@@ -328,6 +371,22 @@ export default function StorySection() {
                       pointerEvents: isActive ? 'auto' : 'none',
                     }}
                   >
+                    {/* Sticker element sticking the photo */}
+                    <img 
+                      src={card.sticker} 
+                      alt="Sticker decorator" 
+                      className="absolute pointer-events-none select-none object-contain"
+                      style={{
+                        left: '50%',
+                        top: '-28px',
+                        width: '65px',
+                        height: '65px',
+                        transform: `translate3d(-50%, 0, 0) rotate(${card.stickerAngle || 0}deg) scale(${isActive ? 1 : 1.5})`,
+                        opacity: isActive ? 1 : 0,
+                        zIndex: 30,
+                        transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s, opacity 0.4s ease 0.8s'
+                      }}
+                    />
                     <div className="polaroid-image-wrapper w-full h-[76%] overflow-hidden rounded-[4px] bg-[#fcf7ed]">
                       <img
                         src={card.url}
