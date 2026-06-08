@@ -50,8 +50,8 @@ export default function ScrollCollage() {
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
   const eased = easeOutCubic(scrollProgress);
 
-  // Morphing navbar progress (completes transition over first 12% of scroll)
-  const navProgress = Math.min(1, scrollProgress / 0.12);
+  // Morphing navbar progress (completes transition over first 30% of scroll)
+  const navProgress = Math.min(1, scrollProgress / 0.30);
 
   // Custom non-linear easing curves for horizontal (X) and vertical (Y) trajectories per card
   // This gives each card its own unique path and speed, creating a curved "invasion" effect.
@@ -143,13 +143,13 @@ export default function ScrollCollage() {
         style={{ height: '80px' }}
       >
         <div 
-          className="pointer-events-auto flex items-center justify-center transition-all duration-300 ease-out"
+          className="pointer-events-auto flex items-center justify-center transition-all duration-500 ease-out"
           style={{
             position: 'absolute',
             top: '16px',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: `min(100vw, ${1200 - (1200 - 280) * navProgress}px)`,
+            width: `min(100vw, ${1200 - (1200 - 320) * navProgress}px)`,
             height: '48px',
             borderRadius: `${navProgress * 9999}px`,
             backgroundColor: `rgba(255, 255, 255, ${navProgress * 0.85})`,
@@ -162,9 +162,13 @@ export default function ScrollCollage() {
             paddingRight: '24px',
           }}
         >
-          <span className="font-semibold text-sm md:text-base tracking-[0.25em] uppercase whitespace-nowrap">
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="font-semibold text-lg md:text-xl tracking-[0.25em] uppercase whitespace-nowrap cursor-pointer hover:opacity-60 transition-opacity duration-300 focus:outline-none"
+            aria-label="Scroll to top"
+          >
             NeelFoundHisPal
-          </span>
+          </button>
         </div>
       </nav>
 
@@ -249,8 +253,8 @@ export default function ScrollCollage() {
                 className="text-white font-display italic text-center"
                 style={{
                   fontSize: isMobile 
-                    ? `${2.2 + (3.5 - 2.2) * (1 - scrollProgress)}rem` 
-                    : `${2.8 + (6.5 - 2.8) * (1 - scrollProgress)}rem`,
+                    ? `${2.8 + (4.2 - 2.8) * (1 - scrollProgress)}rem` 
+                    : `${3.6 + (8.0 - 3.6) * (1 - scrollProgress)}rem`,
                   lineHeight: 1.1,
                   textShadow: '0 2px 10px rgba(0,0,0,0.35)',
                   whiteSpace: 'nowrap'
