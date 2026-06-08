@@ -71,8 +71,8 @@ function App() {
           />
         )}
 
-        {/* Event Countdown Section (Jaipur) */}
-        <EventCountdown />
+        {/* Event Countdown Section (Jaipur - Only for main route) */}
+        {!isChennai && <EventCountdown />}
 
       </main>
 
