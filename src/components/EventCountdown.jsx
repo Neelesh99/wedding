@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-// Target: first day of the wedding, 9 February 2027, midnight IST (UTC+5:30)
-const TARGET_DATE = new Date('2027-02-09T00:00:00+05:30');
-
 function pad(n) {
   return String(n).padStart(2, '0');
 }
 
-function getTimeLeft() {
+function getTimeLeft(targetDate) {
   const now = new Date();
-  const diff = TARGET_DATE - now;
+  const diff = targetDate - now;
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
   const totalSeconds = Math.floor(diff / 1000);
   const seconds = totalSeconds % 60;
@@ -21,8 +18,14 @@ function getTimeLeft() {
   return { days, hours, minutes, seconds };
 }
 
-export default function EventCountdown() {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft);
+export default function EventCountdown({
+  targetDateStr = '2027-02-09T00:00:00+05:30',
+  dateText = '9–11 february, 2027',
+  locationText = 'in Jaipur, India',
+  preambleText = 'so please join us to celebrate our story'
+}) {
+  const targetDate = React.useMemo(() => new Date(targetDateStr), [targetDateStr]);
+  const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(targetDate));
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -33,9 +36,9 @@ export default function EventCountdown() {
   }, []);
 
   useEffect(() => {
-    const tick = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
+    const tick = setInterval(() => setTimeLeft(getTimeLeft(targetDate)), 1000);
     return () => clearInterval(tick);
-  }, []);
+  }, [targetDate]);
 
   const { days, hours, minutes, seconds } = timeLeft;
 
@@ -52,33 +55,7 @@ export default function EventCountdown() {
         overflow: 'hidden',
       }}
     >
-      {/* Subtle decorative ring (background) */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: isMobile ? '340px' : '600px',
-          height: isMobile ? '340px' : '600px',
-          borderRadius: '50%',
-          border: '1px solid rgba(138, 90, 43, 0.08)',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: isMobile ? '480px' : '820px',
-          height: isMobile ? '480px' : '820px',
-          borderRadius: '50%',
-          border: '1px solid rgba(138, 90, 43, 0.04)',
-          pointerEvents: 'none',
-        }}
-      />
+
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         {/* Preamble */}
@@ -92,7 +69,7 @@ export default function EventCountdown() {
             letterSpacing: '0.01em',
           }}
         >
-          so please join us to celebrate our story
+          {preambleText}
         </p>
 
         {/* Big date */}
@@ -107,7 +84,7 @@ export default function EventCountdown() {
             letterSpacing: '-0.01em',
           }}
         >
-          9–11 february, 2027
+          {dateText}
         </h2>
 
         {/* Location */}
@@ -122,7 +99,7 @@ export default function EventCountdown() {
             marginBottom: isMobile ? '3rem' : '4.5rem',
           }}
         >
-          in Jaipur, India
+          {locationText}
         </p>
 
         {/* Countdown ticker */}

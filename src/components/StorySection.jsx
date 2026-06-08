@@ -202,7 +202,7 @@ export default function StorySection() {
   const chapters = [
     {
       title: 'chapter one: how we met',
-      body: 'We met at work but initially we hardly talked to each other, and when we did it was usually from across a table tennis table with a healthy rivalry.',
+      body: 'We met at work, but our early conversations were across a table tennis table, fuelled by friendly competition.',
     },
     {
       title: 'chapter two: falling in love',
@@ -293,14 +293,14 @@ export default function StorySection() {
                     }}
                   >
                     {/* Sticker element sticking the photo */}
-                    <img 
-                      src={card.sticker} 
-                      alt="Sticker decorator" 
+                    <img
+                      src={card.sticker}
+                      alt="Sticker decorator"
                       className="absolute pointer-events-none select-none object-contain"
                       style={{
                         left: '50%',
                         top: '-20px',
-                        width: '45px',
+                        width: 'auto',
                         height: '45px',
                         transform: `translate3d(-50%, 0, 0) rotate(${card.stickerAngle || 0}deg) scale(${isActive ? 1 : 1.5})`,
                         opacity: isActive ? 1 : 0,
@@ -372,14 +372,14 @@ export default function StorySection() {
                     }}
                   >
                     {/* Sticker element sticking the photo */}
-                    <img 
-                      src={card.sticker} 
-                      alt="Sticker decorator" 
+                    <img
+                      src={card.sticker}
+                      alt="Sticker decorator"
                       className="absolute pointer-events-none select-none object-contain"
                       style={{
                         left: '50%',
                         top: '-28px',
-                        width: '65px',
+                        width: 'auto',
                         height: '65px',
                         transform: `translate3d(-50%, 0, 0) rotate(${card.stickerAngle || 0}deg) scale(${isActive ? 1 : 1.5})`,
                         opacity: isActive ? 1 : 0,

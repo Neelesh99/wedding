@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ScrollCollage from './components/ScrollCollage';
 import CountdownSection from './components/CountdownSection';
 import StorySection from './components/StorySection';
@@ -8,6 +8,35 @@ import FAQSection from './components/FAQSection';
 import RSVPForm from './components/RSVPForm';
 
 function App() {
+  const [isChennai, setIsChennai] = useState(() => 
+    window.location.pathname.replace(/\/$/, '').endsWith('/chennai')
+  );
+
+  useEffect(() => {
+    const handlePathChange = () => {
+      setIsChennai(window.location.pathname.replace(/\/$/, '').endsWith('/chennai'));
+    };
+    window.addEventListener('popstate', handlePathChange);
+    
+    // Add support for tracking custom history pushState/replaceState calls
+    const originalPushState = history.pushState;
+    history.pushState = function(...args) {
+      originalPushState.apply(this, args);
+      handlePathChange();
+    };
+    const originalReplaceState = history.replaceState;
+    history.replaceState = function(...args) {
+      originalReplaceState.apply(this, args);
+      handlePathChange();
+    };
+
+    return () => {
+      window.removeEventListener('popstate', handlePathChange);
+      history.pushState = originalPushState;
+      history.replaceState = originalReplaceState;
+    };
+  }, []);
+
   return (
     <div id="top" className="min-h-screen flex flex-col bg-[#fcf7ed]">
 
@@ -32,7 +61,17 @@ function App() {
         {/* Our Story Section */}
         <StorySection />
 
-        {/* Event Countdown Section */}
+        {/* Chennai Event Countdown Section (Only for Chennai route) */}
+        {isChennai && (
+          <EventCountdown
+            targetDateStr="2027-01-28T00:00:00+05:30"
+            dateText="28 january, 2027"
+            locationText="in Chennai, India"
+            preambleText="so please join us to celebrate our engagement"
+          />
+        )}
+
+        {/* Event Countdown Section (Jaipur) */}
         <EventCountdown />
 
       </main>
