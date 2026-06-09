@@ -17,22 +17,29 @@ export default function CountdownSection() {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        
-        // Calculate scroll progress through the viewport
-        if (rect.top >= viewportHeight) {
-          setScrollY(0);
-        } else if (rect.bottom <= 0) {
-          setScrollY(1);
-        } else {
-          const totalDist = viewportHeight + rect.height;
-          const currentDist = viewportHeight - rect.top;
-          const progress = Math.min(1, Math.max(0, currentDist / totalDist));
-          setScrollY(progress);
-        }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (sectionRef.current) {
+            const rect = sectionRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            // Calculate scroll progress through the viewport
+            if (rect.top >= viewportHeight) {
+              setScrollY(0);
+            } else if (rect.bottom <= 0) {
+              setScrollY(1);
+            } else {
+              const totalDist = viewportHeight + rect.height;
+              const currentDist = viewportHeight - rect.top;
+              const progress = Math.min(1, Math.max(0, currentDist / totalDist));
+              setScrollY(progress);
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -80,7 +87,7 @@ export default function CountdownSection() {
           height: 'auto',
           opacity: stencilOpacity * (isMobile ? 0.5 : 1.0),
           transform: `translate3d(0, ${leftTranslateY}px, 0)`,
-          transition: 'transform 0.1s ease-out, opacity 0.15s ease-out',
+          transition: 'opacity 0.15s ease-out',
         }}
       />
 
@@ -95,7 +102,7 @@ export default function CountdownSection() {
           height: 'auto',
           opacity: stencilOpacity * (isMobile ? 0.5 : 1.0),
           transform: `translate3d(0, ${rightTranslateY}px, 0)`,
-          transition: 'transform 0.1s ease-out, opacity 0.15s ease-out',
+          transition: 'opacity 0.15s ease-out',
         }}
       />
 
@@ -106,7 +113,7 @@ export default function CountdownSection() {
           maxWidth: '750px',
           transform: `translate3d(0, ${textTranslateY}px, 0)`,
           opacity: textOpacity,
-          transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
+          transition: 'opacity 0.1s ease-out',
           paddingLeft: '24px',
           paddingRight: '24px',
         }}
