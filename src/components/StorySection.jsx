@@ -12,7 +12,7 @@ import imgBeachFriends from '../assets/images/full_size/PXL_20230521_103227395.j
 import imgCsLunch from '../assets/images/full_size/cs_lunch.jpg';
 import imgCsFriends from '../assets/images/full_size/cs_friends.jpg';
 import imgFirstDate from '../assets/images/full_size/IMG_0846.jpg';
-import imgCroatia from '../assets/images/full_size/IMG_1361.jpg';
+import imgCroatia from '../assets/images/full_size/FullSizeRender.jpg';
 import imgWalks from '../assets/images/full_size/IMG_7149.jpg';
 import imgDates from '../assets/images/full_size/IMG_2721.jpg';
 import imgExploring from '../assets/images/full_size/IMG_0070.jpg';
@@ -61,7 +61,7 @@ export default function StorySection() {
     {
       id: 0,
       url: imgBeachFriends,
-      caption: 'Our first picture together',
+      caption: 'our first picture together',
       trigger: 0,
       angle: -5,
       x: -12,
@@ -72,7 +72,7 @@ export default function StorySection() {
     {
       id: 1,
       url: imgCsLunch,
-      caption: 'The first time we met',
+      caption: 'the first time we met',
       trigger: 0.1,
       angle: 4,
       x: 10,
@@ -83,7 +83,7 @@ export default function StorySection() {
     {
       id: 2,
       url: imgCsFriends,
-      caption: 'Our last work event together',
+      caption: 'our last work event together',
       trigger: 0.2,
       angle: -2,
       x: -6,
@@ -94,7 +94,7 @@ export default function StorySection() {
     {
       id: 3,
       url: imgFirstDate,
-      caption: 'Our first Date <3',
+      caption: 'our first date <3',
       trigger: 0.3,
       angle: 6,
       x: 8,
@@ -105,7 +105,7 @@ export default function StorySection() {
     {
       id: 4,
       url: imgCroatia,
-      caption: 'Us basking in the sun',
+      caption: 'laughing at any time of day',
       trigger: 0.4,
       angle: -4,
       x: -10,
@@ -116,7 +116,7 @@ export default function StorySection() {
     {
       id: 5,
       url: imgDates,
-      caption: 'Dining in the west end',
+      caption: 'dining in the west end',
       trigger: 0.5,
       angle: 3,
       x: 5,
@@ -127,7 +127,7 @@ export default function StorySection() {
     {
       id: 6,
       url: imgWalks,
-      caption: 'Starting to plan our wedding',
+      caption: 'starting to plan our wedding',
       trigger: 0.6,
       angle: -6,
       x: -14,
@@ -138,7 +138,7 @@ export default function StorySection() {
     {
       id: 7,
       url: imgExploring,
-      caption: 'Mario Karting in Tokyo',
+      caption: 'mario karting in tokyo',
       trigger: 0.7,
       angle: 5,
       x: 12,
@@ -149,7 +149,7 @@ export default function StorySection() {
     {
       id: 8,
       url: imgLastImage,
-      caption: 'Always by your side',
+      caption: 'always by your side',
       trigger: 0.8,
       angle: -1,
       x: -2,
@@ -220,16 +220,18 @@ export default function StorySection() {
         style={{
           height: '100vh',
           borderBottomColor: 'rgba(47, 36, 27, 0.05)',
+          paddingTop: isMobile ? '2.5rem' : '5rem',
         }}
       >
         {/* Lowercase Title */}
         <h2
-          className="font-display text-text-primary text-center select-none"
+          className="font-display text-center select-none"
           style={{
             fontSize: isMobile ? '3.6rem' : '6rem',
             textTransform: 'lowercase',
             marginBottom: isMobile ? '1.5rem' : '2.5rem',
-            marginTop: isMobile ? '2.5rem' : '0',
+            marginTop: '0',
+            color: 'var(--palette-red)',
           }}
         >
           our story

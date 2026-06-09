@@ -3,7 +3,7 @@ import { Menu, X, ArrowDown } from 'lucide-react';
 import peacockSticker from '../assets/images/stickers/peacock_sticker.png';
 import elephantSticker from '../assets/images/stickers/elephant_sticker.png';
 import heroImage from '../assets/images/full_size/Neelesh & Palak Engagement - Awajishima, Keino Beach-34.jpg';
-import imgBeach from '../assets/images/full_size/FullSizeRender.jpg';
+import imgBeach from '../assets/images/full_size/IMG_1361.jpg';
 import imgDancing from '../assets/images/full_size/IMG-20231106-WA0009.jpg';
 import imgCanyon from '../assets/images/full_size/IMG_7459.jpg';
 import imgFeet from '../assets/images/full_size/IMG_4572.jpg';
@@ -157,12 +157,12 @@ export default function ScrollCollage() {
             width: `min(100vw, ${1200 - (1200 - 320) * navProgress}px)`,
             height: '48px',
             borderRadius: `${navProgress * 9999}px`,
-            backgroundColor: `rgba(255, 255, 255, ${navProgress * 0.85})`,
+            backgroundColor: `rgba(102, 120, 3, ${navProgress * 0.95})`,
             backdropFilter: navProgress > 0 ? `blur(${navProgress * 16}px)` : 'none',
             WebkitBackdropFilter: navProgress > 0 ? `blur(${navProgress * 16}px)` : 'none',
-            border: navProgress > 0 ? `1px solid rgba(255, 255, 255, ${navProgress * 0.4})` : '1px solid transparent',
+            border: navProgress > 0 ? `1px solid rgba(255, 255, 255, ${navProgress * 0.2})` : '1px solid transparent',
             boxShadow: navProgress > 0.5 ? '0 8px 24px rgba(47, 36, 27, 0.08)' : 'none',
-            color: `rgb(${Math.round(255 - 208 * navProgress)}, ${Math.round(255 - 219 * navProgress)}, ${Math.round(255 - 228 * navProgress)})`,
+            color: '#ffffff',
             paddingLeft: '24px',
             paddingRight: '24px',
           }}

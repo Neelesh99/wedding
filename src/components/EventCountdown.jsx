@@ -47,8 +47,8 @@ export default function EventCountdown({
       style={{
         backgroundColor: '#fcf7ed',
         width: '100%',
-        paddingTop: isMobile ? '5rem' : '8rem',
-        paddingBottom: isMobile ? '5rem' : '8rem',
+        paddingTop: isMobile ? '2.5rem' : '4rem',
+        paddingBottom: isMobile ? '4rem' : '6rem',
         textAlign: 'center',
         borderBottom: '1px solid rgba(47,36,27,0.07)',
         position: 'relative',
@@ -63,8 +63,9 @@ export default function EventCountdown({
           style={{
             fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
-            fontSize: isMobile ? '1.1rem' : '1.35rem',
-            color: 'var(--text-muted)',
+            fontSize: isMobile ? '2.1rem' : '3.6rem',
+            lineHeight: 1.45,
+            color: 'var(--palette-green)',
             marginBottom: isMobile ? '1.8rem' : '2.5rem',
             letterSpacing: '0.01em',
           }}
@@ -93,7 +94,7 @@ export default function EventCountdown({
             fontFamily: 'var(--font-body)',
             fontWeight: 900,
             fontSize: isMobile ? '1.5rem' : '1.6rem',
-            color: 'var(--accent-color)',
+            color: 'var(--palette-red)',
             letterSpacing: '0.32em',
             textTransform: 'uppercase',
             marginBottom: isMobile ? '3rem' : '4.5rem',

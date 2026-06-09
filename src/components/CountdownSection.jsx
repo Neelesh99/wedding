@@ -69,7 +69,7 @@ export default function CountdownSection() {
   return (
     <section 
       ref={sectionRef} 
-      className="relative bg-white w-full flex items-center justify-center border-b"
+      className="relative bg-bg-main w-full flex items-center justify-center border-b"
       style={{
         paddingTop: isMobile ? '3rem' : '5rem',
         paddingBottom: isMobile ? '4rem' : '7rem',
@@ -83,7 +83,7 @@ export default function CountdownSection() {
         style={{
           left: isMobile ? '-60px' : '2%',
           top: isMobile ? '5%' : '8%',
-          width: isMobile ? '120px' : '300px',
+          width: isMobile ? '156px' : '390px',
           height: 'auto',
           opacity: stencilOpacity * (isMobile ? 0.5 : 1.0),
           transform: `translate3d(0, ${leftTranslateY}px, 0)`,
@@ -118,28 +118,16 @@ export default function CountdownSection() {
           paddingRight: '24px',
         }}
       >
-        <span 
-          className="font-semibold uppercase block"
-          style={{
-            fontSize: '11px',
-            letterSpacing: '0.4em',
-            color: 'var(--accent-color)',
-            marginBottom: '2rem',
-          }}
-        >
-          The Promise
-        </span>
-        
         <h2 
-          className="font-display italic text-text-primary font-normal"
+          className="font-display text-text-primary font-normal"
           style={{
             fontSize: isMobile ? '2.1rem' : '3.6rem',
             lineHeight: 1.45,
           }}
         >
           “The countdown to forever begins {!isMobile && <br />}
-          with a celebration of <span style={{ color: 'var(--accent-color)' }}>love, laughter</span> {!isMobile && <br />}
-          and <span style={{ borderBottom: '1px solid rgba(138, 90, 43, 0.25)', paddingBottom: '3px' }}>happily ever after</span>”
+          with a celebration of <span style={{ color: 'var(--palette-red)' }}>love, laughter</span> {!isMobile && <br />}
+          and happily ever after”
         </h2>
 
         {/* Elegant vertical visual anchor */}

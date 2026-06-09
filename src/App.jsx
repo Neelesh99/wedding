@@ -43,12 +43,11 @@ function App() {
       {/* Scroll-driven Collage Hero Section */}
       <ScrollCollage />
 
-      {/* Soft gradient spacer transition from off-white hero to white countdown */}
+      {/* Spacer transition from hero to countdown */}
       <div
-        className="w-full relative z-20"
+        className="w-full relative z-20 bg-bg-main"
         style={{
-          height: '80px',
-          backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)'
+          height: '80px'
         }}
       />
 
