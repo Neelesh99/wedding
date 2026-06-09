@@ -2,12 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import flowerSticker from '../assets/images/stickers/flower_sticker.png';
 import bananaLeaf from '../assets/images/stickers/banana_leaf.png';
 import pohaSticker from '../assets/images/stickers/poha_sticker.png';
-import coconutSticker from '../assets/images/stickers/coconut_sticker.png';
 import autoSticker from '../assets/images/stickers/auto_sticker.png';
-import autoOldSticker from '../assets/images/stickers/auto_old_sticker.png';
+import coconutSticker from '../assets/images/stickers/coconut_sticker.png';
+import templeSticker from '../assets/images/stickers/temple_sticker.png';
 import peacockSticker from '../assets/images/stickers/peacock_sticker.png';
 import elephantSticker from '../assets/images/stickers/elephant_sticker.png';
-import templeSticker from '../assets/images/stickers/temple_sticker.png';
+
+import imgBeachFriends from '../assets/images/full_size/PXL_20230521_103227395.jpg';
+import imgCsLunch from '../assets/images/full_size/cs_lunch.jpg';
+import imgCsFriends from '../assets/images/full_size/cs_friends.png';
+import imgFirstDate from '../assets/images/full_size/IMG_0846.jpg';
+import imgCroatia from '../assets/images/full_size/IMG_1361.jpg';
+import imgWalks from '../assets/images/full_size/IMG_1765.jpg';
+import imgDates from '../assets/images/full_size/IMG_2721.jpg';
+import imgExploring from '../assets/images/full_size/IMG_0070.jpg';
+import imgLastImage from '../assets/images/full_size/last_image.png';
 
 export default function StorySection() {
   const containerRef = useRef(null);
@@ -51,8 +60,8 @@ export default function StorySection() {
   const cards = [
     {
       id: 0,
-      url: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600',
-      caption: 'First year on campus',
+      url: imgBeachFriends,
+      caption: 'At the beach as friends',
       trigger: 0,
       angle: -5,
       x: -12,
@@ -62,9 +71,9 @@ export default function StorySection() {
     },
     {
       id: 1,
-      url: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=600',
-      caption: 'Coffee between classes',
-      trigger: 0.12,
+      url: imgCsLunch,
+      caption: 'First time we met',
+      trigger: 0.1,
       angle: 4,
       x: 10,
       y: 6,
@@ -73,9 +82,9 @@ export default function StorySection() {
     },
     {
       id: 2,
-      url: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600',
-      caption: 'Late study sessions',
-      trigger: 0.22,
+      url: imgCsFriends,
+      caption: 'Last work event together',
+      trigger: 0.2,
       angle: -2,
       x: -6,
       y: -4,
@@ -84,114 +93,96 @@ export default function StorySection() {
     },
     {
       id: 3,
-      url: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600',
-      caption: 'A favorite city corner',
-      trigger: 0.35,
-      angle: 3,
-      x: 12,
-      y: -12,
+      url: imgFirstDate,
+      caption: 'First Date <3',
+      trigger: 0.3,
+      angle: 6,
+      x: 8,
+      y: 12,
       sticker: coconutSticker,
-      stickerAngle: 20,
+      stickerAngle: 12,
     },
     {
       id: 4,
-      url: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=600',
-      caption: 'Our everyday ritual',
-      trigger: 0.45,
-      angle: -6,
-      x: -14,
-      y: 10,
+      url: imgCroatia,
+      caption: 'Fun in the sun',
+      trigger: 0.4,
+      angle: -4,
+      x: -10,
+      y: -8,
       sticker: autoSticker,
-      stickerAngle: -15,
+      stickerAngle: -12,
     },
     {
       id: 5,
-      url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=600',
-      caption: 'Weekend park walks',
-      trigger: 0.55,
-      angle: 2,
-      x: 8,
-      y: 4,
-      sticker: autoOldSticker,
+      url: imgDates,
+      caption: 'Dining in the west end',
+      trigger: 0.5,
+      angle: 3,
+      x: 5,
+      y: -2,
+      sticker: templeSticker,
       stickerAngle: 10,
     },
     {
       id: 6,
-      url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600',
-      caption: 'Mountain hiking',
-      trigger: 0.68,
-      angle: -4,
-      x: -8,
-      y: -8,
-      sticker: peacockSticker,
-      stickerAngle: -5,
+      url: imgWalks,
+      caption: 'A summer evening in London',
+      trigger: 0.6,
+      angle: -6,
+      x: -14,
+      y: 8,
+      sticker: flowerSticker,
+      stickerAngle: -15,
     },
     {
       id: 7,
-      url: 'https://images.unsplash.com/photo-1494972308805-463bc619d34e?q=80&w=600',
-      caption: 'Quiet sunset views',
-      trigger: 0.78,
+      url: imgExploring,
+      caption: 'Mario Karting in Tokyo',
+      trigger: 0.7,
       angle: 5,
-      x: 14,
-      y: 12,
-      sticker: elephantSticker,
+      x: 12,
+      y: -6,
+      sticker: peacockSticker,
       stickerAngle: 18,
     },
     {
       id: 8,
-      url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600',
-      caption: 'Right after yes',
-      trigger: 0.88,
+      url: imgLastImage,
+      caption: 'Always by your side',
+      trigger: 0.8,
       angle: -1,
-      x: 0,
-      y: 0,
-      sticker: templeSticker,
-      stickerAngle: 0,
+      x: -2,
+      y: 4,
+      sticker: elephantSticker,
+      stickerAngle: -5,
     }
   ];
 
+  const activeCardIndex = cards.reduce((maxIdx, card, idx) => scrollProgress >= card.trigger ? idx : maxIdx, 0);
+  const activeChapterIndex = Math.floor(activeCardIndex / 3);
+
   // Helper to compute opacity and translate styles for the narrative text blocks
   const getChapterTextStyle = (chapterIdx) => {
+    const isChapterActive = activeChapterIndex === chapterIdx;
     let opacity = 0;
     let translateY = 30;
 
-    if (chapterIdx === 0) {
-      if (scrollProgress < 0.3) {
-        opacity = 1;
-        translateY = 0;
-      } else if (scrollProgress < 0.35) {
-        const t = (scrollProgress - 0.3) / 0.05; // 0 to 1
-        opacity = 1 - t;
-        translateY = -30 * t;
-      }
-    } else if (chapterIdx === 1) {
-      if (scrollProgress >= 0.32 && scrollProgress < 0.36) {
-        const t = (scrollProgress - 0.32) / 0.04;
-        opacity = t;
-        translateY = 30 * (1 - t);
-      } else if (scrollProgress >= 0.36 && scrollProgress < 0.63) {
-        opacity = 1;
-        translateY = 0;
-      } else if (scrollProgress >= 0.63 && scrollProgress < 0.68) {
-        const t = (scrollProgress - 0.63) / 0.05;
-        opacity = 1 - t;
-        translateY = -30 * t;
-      }
-    } else if (chapterIdx === 2) {
-      if (scrollProgress >= 0.65 && scrollProgress < 0.7) {
-        const t = (scrollProgress - 0.65) / 0.05;
-        opacity = t;
-        translateY = 30 * (1 - t);
-      } else if (scrollProgress >= 0.7) {
-        opacity = 1;
-        translateY = 0;
-      }
+    if (isChapterActive) {
+      opacity = 1;
+      translateY = 0;
+    } else if (chapterIdx < activeChapterIndex) {
+      opacity = 0;
+      translateY = -30;
+    } else {
+      opacity = 0;
+      translateY = 30;
     }
 
     return {
       opacity,
       transform: `translate3d(0, ${translateY}px, 0)`,
-      transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+      transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
       pointerEvents: opacity > 0.1 ? 'auto' : 'none',
       position: 'absolute',
       width: '100%',
@@ -221,7 +212,7 @@ export default function StorySection() {
     <div
       ref={containerRef}
       className="relative w-full"
-      style={{ height: '350vh', backgroundColor: '#fcf7ed' }}
+      style={{ height: '600vh', backgroundColor: '#fcf7ed' }}
     >
       {/* STICKY TIMELINE AREA */}
       <div

@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowDown } from 'lucide-react';
 import peacockSticker from '../assets/images/stickers/peacock_sticker.png';
 import elephantSticker from '../assets/images/stickers/elephant_sticker.png';
+import heroImage from '../assets/images/full_size/Neelesh & Palak Engagement - Awajishima, Keino Beach-34.jpg';
+import imgBeach from '../assets/images/full_size/FullSizeRender.jpg';
+import imgDancing from '../assets/images/full_size/IMG-20231106-WA0009.jpg';
+import imgCanyon from '../assets/images/full_size/IMG_7459.jpg';
+import imgFeet from '../assets/images/full_size/IMG_4572.jpg';
 
 export default function ScrollCollage() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -180,7 +185,7 @@ export default function ScrollCollage() {
 
           {/* BEACH CARD (TOP LEFT) */}
           <img 
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600" 
+            src={imgBeach} 
             alt="Beach sunset" 
             className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
@@ -198,7 +203,7 @@ export default function ScrollCollage() {
 
           {/* DANCING CARD (BOTTOM LEFT) */}
           <img 
-            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600" 
+            src={imgDancing} 
             alt="Dancing couple" 
             className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
@@ -207,7 +212,6 @@ export default function ScrollCollage() {
               right: sizes.dancing.right,
               top: sizes.dancing.top,
               borderRadius: '20px',
-              filter: 'grayscale(0.6)',
               opacity: 1,
               transform: `translate3d(${(1 - easedDancingX) * -translateOffset}px, ${(1 - easedDancingY) * -60}px, 0) scale(${0.85 + 0.15 * easedDancingX})`,
               transformOrigin: 'right center',
@@ -230,7 +234,7 @@ export default function ScrollCollage() {
           >
             {/* Background Image inside Main Card */}
             <img 
-              src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200" 
+              src={heroImage} 
               alt="Palak & Neelesh proposal" 
               className="absolute inset-0 w-full h-full object-cover"
               style={{
@@ -285,7 +289,7 @@ export default function ScrollCollage() {
 
           {/* CANYON CARD (TOP RIGHT) */}
           <img 
-            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=600" 
+            src={imgCanyon} 
             alt="Canyon lookout" 
             className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
@@ -297,13 +301,14 @@ export default function ScrollCollage() {
               opacity: 1,
               transform: `translate3d(${(1 - easedCanyonX) * translateOffset}px, ${(1 - easedCanyonY) * 50}px, 0) scale(${0.85 + 0.15 * easedCanyonX})`,
               transformOrigin: 'left center',
-              zIndex: isMobile ? 5 : 20
+              zIndex: isMobile ? 5 : 20,
+              objectPosition: 'center 70%'
             }}
           />
 
           {/* FEET CARD (BOTTOM RIGHT) */}
           <img 
-            src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600" 
+            src={imgFeet} 
             alt="Hiking legs" 
             className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
