@@ -193,7 +193,7 @@ export default function StorySection() {
   const chapters = [
     {
       title: 'chapter one: how we met',
-      body: 'We met at work, but our early conversations were across a table tennis table, fuelled by friendly competition.',
+      body: 'We met at work and our early conversations were across a table tennis table, fuelled by friendly competition.',
     },
     {
       title: 'chapter two: falling in love',
