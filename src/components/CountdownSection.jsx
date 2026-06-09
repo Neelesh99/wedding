@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
+import leftStencil from '../assets/images/stenciles/0ef7b8e8df281f4e561195ae9e7e21a7.png';
+import rightStencil from '../assets/images/stenciles/a5c037181700647b1d18aec187b2fe42.png';
 
 export default function CountdownSection() {
   const sectionRef = useRef(null);
@@ -21,7 +23,11 @@ export default function CountdownSection() {
         const viewportHeight = window.innerHeight;
         
         // Calculate scroll progress through the viewport
-        if (rect.top < viewportHeight && rect.bottom > 0) {
+        if (rect.top >= viewportHeight) {
+          setScrollY(0);
+        } else if (rect.bottom <= 0) {
+          setScrollY(1);
+        } else {
           const totalDist = viewportHeight + rect.height;
           const currentDist = viewportHeight - rect.top;
           const progress = Math.min(1, Math.max(0, currentDist / totalDist));
@@ -50,59 +56,48 @@ export default function CountdownSection() {
       ? (1 - scrollY) / 0.25 
       : 1;
 
+  // Calculate stencil opacity (fades from 80% to 100% as user scrolls to them)
+  const stencilOpacity = 0.8 + 0.2 * Math.min(1, scrollY / 0.65);
+
   return (
     <section 
       ref={sectionRef} 
       className="relative bg-white w-full flex items-center justify-center border-b"
       style={{
-        paddingTop: isMobile ? '6rem' : '10rem',
-        paddingBottom: isMobile ? '6rem' : '10rem',
+        paddingTop: isMobile ? '3rem' : '5rem',
+        paddingBottom: isMobile ? '4rem' : '7rem',
       }}
     >
-      {/* Background Parallax SVGs - absolute positioned far to the sides to prevent overlaying with text */}
-      <div 
-        className="absolute pointer-events-none select-none z-10"
+      {/* Background Parallax Stencil Images - absolute positioned far to the sides to prevent overlaying with text */}
+      <img 
+        src={leftStencil} 
+        alt="Decorative Indian Kolam Stencil Left" 
+        className="absolute pointer-events-none select-none z-10 object-contain"
         style={{
-          left: isMobile ? '-25px' : '4%',
-          top: '10%',
-          width: isMobile ? '120px' : '200px',
-          height: isMobile ? '240px' : '400px',
-          opacity: isMobile ? 0.2 : 0.45,
-          transform: `translate3d(0, ${leftTranslateY}px, 0) rotate(-15deg)`,
-          transition: 'transform 0.1s ease-out',
+          left: isMobile ? '-60px' : '2%',
+          top: isMobile ? '5%' : '8%',
+          width: isMobile ? '120px' : '300px',
+          height: 'auto',
+          opacity: stencilOpacity * (isMobile ? 0.5 : 1.0),
+          transform: `translate3d(0, ${leftTranslateY}px, 0)`,
+          transition: 'transform 0.1s ease-out, opacity 0.15s ease-out',
         }}
-      >
-        <svg viewBox="0 0 100 200" fill="none" stroke="var(--accent-color)" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-          <path d="M50 180 C40 130, 60 70, 50 20" />
-          <path d="M50 150 Q20 140, 30 120 Q40 120, 50 140" fill="var(--accent-color)" fillOpacity="0.06" />
-          <path d="M50 130 Q80 120, 70 100 Q60 100, 50 120" fill="var(--accent-color)" fillOpacity="0.06" />
-          <path d="M50 100 Q25 90, 35 70 Q45 70, 50 90" fill="var(--accent-color)" fillOpacity="0.06" />
-          <path d="M50 80 Q75 70, 65 50 Q55 50, 50 70" fill="var(--accent-color)" fillOpacity="0.06" />
-          <path d="M50 50 Q30 40, 40 25 Q50 25, 50 45" fill="var(--accent-color)" fillOpacity="0.06" />
-        </svg>
-      </div>
+      />
 
-      <div 
-        className="absolute pointer-events-none select-none z-10"
+      <img 
+        src={rightStencil} 
+        alt="Decorative Floral Paisley Stencil Right" 
+        className="absolute pointer-events-none select-none z-10 object-contain"
         style={{
-          right: isMobile ? '-25px' : '4%',
-          bottom: '10%',
-          width: isMobile ? '120px' : '200px',
-          height: isMobile ? '240px' : '400px',
-          opacity: isMobile ? 0.2 : 0.45,
-          transform: `translate3d(0, ${rightTranslateY}px, 0) rotate(15deg)`,
-          transition: 'transform 0.1s ease-out',
+          right: isMobile ? '-60px' : '2%',
+          bottom: isMobile ? '5%' : '5%',
+          width: isMobile ? '130px' : '320px',
+          height: 'auto',
+          opacity: stencilOpacity * (isMobile ? 0.5 : 1.0),
+          transform: `translate3d(0, ${rightTranslateY}px, 0)`,
+          transition: 'transform 0.1s ease-out, opacity 0.15s ease-out',
         }}
-      >
-        <svg viewBox="0 0 100 200" fill="none" stroke="var(--accent-color)" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-          <path d="M50 180 C60 140, 40 80, 50 20" />
-          <path d="M50 160 Q80 150, 70 130 Q60 130, 50 150" fill="var(--accent-color)" fillOpacity="0.06" />
-          <path d="M50 135 Q20 125, 30 105 Q40 105, 50 125" fill="var(--accent-color)" fillOpacity="0.06" />
-          <path d="M50 110 Q75 100, 65 80 Q55 80, 50 100" fill="var(--accent-color)" fillOpacity="0.06" />
-          <path d="M50 85 Q30 75, 40 55 Q50 55, 50 75" fill="var(--accent-color)" fillOpacity="0.06" />
-          <path d="M50 55 Q70 45, 60 30 Q50 30, 50 50" fill="var(--accent-color)" fillOpacity="0.06" />
-        </svg>
-      </div>
+      />
 
       {/* Center Statement Container */}
       <div 

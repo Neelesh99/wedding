@@ -47,7 +47,7 @@ function App() {
       <div
         className="w-full relative z-20"
         style={{
-          height: '160px',
+          height: '80px',
           backgroundImage: 'linear-gradient(to bottom, #fcf7ed, #ffffff)'
         }}
       />

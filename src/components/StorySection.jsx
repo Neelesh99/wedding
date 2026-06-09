@@ -10,13 +10,13 @@ import elephantSticker from '../assets/images/stickers/elephant_sticker.png';
 
 import imgBeachFriends from '../assets/images/full_size/PXL_20230521_103227395.jpg';
 import imgCsLunch from '../assets/images/full_size/cs_lunch.jpg';
-import imgCsFriends from '../assets/images/full_size/cs_friends.png';
+import imgCsFriends from '../assets/images/full_size/cs_friends.jpg';
 import imgFirstDate from '../assets/images/full_size/IMG_0846.jpg';
 import imgCroatia from '../assets/images/full_size/IMG_1361.jpg';
-import imgWalks from '../assets/images/full_size/IMG_1765.jpg';
+import imgWalks from '../assets/images/full_size/IMG_7149.jpg';
 import imgDates from '../assets/images/full_size/IMG_2721.jpg';
 import imgExploring from '../assets/images/full_size/IMG_0070.jpg';
-import imgLastImage from '../assets/images/full_size/last_image.png';
+import imgLastImage from '../assets/images/full_size/last_image.jpg';
 
 export default function StorySection() {
   const containerRef = useRef(null);
@@ -61,7 +61,7 @@ export default function StorySection() {
     {
       id: 0,
       url: imgBeachFriends,
-      caption: 'At the beach as friends',
+      caption: 'Our first picture together',
       trigger: 0,
       angle: -5,
       x: -12,
@@ -72,7 +72,7 @@ export default function StorySection() {
     {
       id: 1,
       url: imgCsLunch,
-      caption: 'First time we met',
+      caption: 'The first time we met',
       trigger: 0.1,
       angle: 4,
       x: 10,
@@ -83,7 +83,7 @@ export default function StorySection() {
     {
       id: 2,
       url: imgCsFriends,
-      caption: 'Last work event together',
+      caption: 'Our last work event together',
       trigger: 0.2,
       angle: -2,
       x: -6,
@@ -94,7 +94,7 @@ export default function StorySection() {
     {
       id: 3,
       url: imgFirstDate,
-      caption: 'First Date <3',
+      caption: 'Our first Date <3',
       trigger: 0.3,
       angle: 6,
       x: 8,
@@ -105,7 +105,7 @@ export default function StorySection() {
     {
       id: 4,
       url: imgCroatia,
-      caption: 'Fun in the sun',
+      caption: 'Us basking in the sun',
       trigger: 0.4,
       angle: -4,
       x: -10,
@@ -127,7 +127,7 @@ export default function StorySection() {
     {
       id: 6,
       url: imgWalks,
-      caption: 'A summer evening in London',
+      caption: 'Starting to plan our wedding',
       trigger: 0.6,
       angle: -6,
       x: -14,

@@ -60,11 +60,11 @@ export default function ScrollCollage() {
 
   // Custom non-linear easing curves for horizontal (X) and vertical (Y) trajectories per card
   // This gives each card its own unique path and speed, creating a curved "invasion" effect.
-  
+
   // Beach (top-left) - fast horizontally, slow start/fast end vertically. Starts lower, slides up.
   const easedBeachX = 1 - Math.pow(1 - scrollProgress, 3.5);
   const easedBeachY = Math.pow(scrollProgress, 1.8);
-  
+
   // Dancing (bottom-left) - medium horizontally, slower vertically. Starts higher, slides down.
   const easedDancingX = 1 - Math.pow(1 - scrollProgress, 2.2);
   const easedDancingY = Math.pow(scrollProgress, 1.5);
@@ -82,17 +82,17 @@ export default function ScrollCollage() {
   // Responsive dimensions for elements in the collage (in pixels)
   const sizes = {
     main: isMobile ? { w: 240, h: 340 } : { w: 500, h: 520 },
-    beach: isMobile 
-      ? { w: 120, h: 100, right: 'calc(50% + 120px - 45px)', top: 'calc(50% - 180px)' } 
+    beach: isMobile
+      ? { w: 120, h: 100, right: 'calc(50% + 120px - 45px)', top: 'calc(50% - 180px)' }
       : { w: 280, h: 240, right: 'calc(50% + 250px + 24px)', top: 'calc(50% - 270px)' },
-    dancing: isMobile 
-      ? { w: 100, h: 75, right: 'calc(50% + 120px - 30px)', top: 'calc(50% - 10px)' } 
+    dancing: isMobile
+      ? { w: 100, h: 75, right: 'calc(50% + 120px - 30px)', top: 'calc(50% - 10px)' }
       : { w: 245, h: 165, right: 'calc(50% + 250px + 24px)', top: 'calc(50% - 10px)' },
-    canyon: isMobile 
-      ? { w: 100, h: 75, left: 'calc(50% + 120px - 35px)', top: 'calc(50% - 60px)' } 
+    canyon: isMobile
+      ? { w: 100, h: 75, left: 'calc(50% + 120px - 35px)', top: 'calc(50% - 60px)' }
       : { w: 220, h: 160, left: 'calc(50% + 250px + 24px)', top: 'calc(50% - 60px)' },
-    feet: isMobile 
-      ? { w: 120, h: 120, left: 'calc(50% + 120px - 45px)', top: 'calc(50% + 70px)' } 
+    feet: isMobile
+      ? { w: 120, h: 120, left: 'calc(50% + 120px - 45px)', top: 'calc(50% + 70px)' }
       : { w: 280, h: 280, left: 'calc(50% + 250px + 24px)', top: 'calc(50% + 120px)' },
     peacockSticker: isMobile
       ? { w: 60, h: 100, left: 'calc(50% + 130px)', top: 'calc(50% - 200px)' }
@@ -108,7 +108,7 @@ export default function ScrollCollage() {
   const startH = viewport.h - 32;
   const mainCardWidth = startW - (startW - sizes.main.w) * scrollProgress;
   const mainCardHeight = startH - (startH - sizes.main.h) * scrollProgress;
-  
+
   // Border radius of main card is constantly 32px to keep it rounded at all scroll positions
   const mainCardBorderRadius = 32;
 
@@ -141,13 +141,13 @@ export default function ScrollCollage() {
 
   return (
     <div ref={containerRef} className="relative w-full" style={{ height: '230vh' }}>
-      
+
       {/* MORPHING FLOATING NAVBAR */}
       <nav
         className="fixed left-0 right-0 top-0 z-50 pointer-events-none"
         style={{ height: '80px' }}
       >
-        <div 
+        <div
           className="pointer-events-auto flex items-center justify-center transition-all duration-500 ease-out"
           style={{
             position: 'absolute',
@@ -162,12 +162,12 @@ export default function ScrollCollage() {
             WebkitBackdropFilter: navProgress > 0 ? `blur(${navProgress * 16}px)` : 'none',
             border: navProgress > 0 ? `1px solid rgba(255, 255, 255, ${navProgress * 0.4})` : '1px solid transparent',
             boxShadow: navProgress > 0.5 ? '0 8px 24px rgba(47, 36, 27, 0.08)' : 'none',
-            color: '#2f241b',
+            color: `rgb(${Math.round(255 - 208 * navProgress)}, ${Math.round(255 - 219 * navProgress)}, ${Math.round(255 - 228 * navProgress)})`,
             paddingLeft: '24px',
             paddingRight: '24px',
           }}
         >
-          <button 
+          <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="font-semibold text-lg md:text-xl tracking-[0.25em] uppercase whitespace-nowrap cursor-pointer hover:opacity-60 transition-opacity duration-300 focus:outline-none"
             aria-label="Scroll to top"
@@ -179,14 +179,14 @@ export default function ScrollCollage() {
 
       {/* STICKY CONTAINER FOR ANIMATION */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-[#fcf7ed]">
-        
+
         {/* COLLAGE STAGE CONTAINER */}
         <div className="relative w-full max-w-[1200px] h-[85vh] flex items-center justify-center">
 
           {/* BEACH CARD (TOP LEFT) */}
-          <img 
-            src={imgBeach} 
-            alt="Beach sunset" 
+          <img
+            src={imgBeach}
+            alt="Beach sunset"
             className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
               width: `${sizes.beach.w}px`,
@@ -202,9 +202,9 @@ export default function ScrollCollage() {
           />
 
           {/* DANCING CARD (BOTTOM LEFT) */}
-          <img 
-            src={imgDancing} 
-            alt="Dancing couple" 
+          <img
+            src={imgDancing}
+            alt="Dancing couple"
             className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
               width: `${sizes.dancing.w}px`,
@@ -220,7 +220,7 @@ export default function ScrollCollage() {
           />
 
           {/* MAIN HERO CARD (CENTERED) */}
-          <div 
+          <div
             className="absolute overflow-hidden shadow-2xl z-10"
             style={{
               width: `${mainCardWidth}px`,
@@ -233,9 +233,9 @@ export default function ScrollCollage() {
             }}
           >
             {/* Background Image inside Main Card */}
-            <img 
-              src={heroImage} 
-              alt="Palak & Neelesh proposal" 
+            <img
+              src={heroImage}
+              alt="Palak & Neelesh proposal"
               className="absolute inset-0 w-full h-full object-cover"
               style={{
                 transform: `scale(${1.1 - 0.1 * eased})`,
@@ -249,15 +249,15 @@ export default function ScrollCollage() {
             {/* Inside navbar removed in favor of morphing navbar */}
 
             {/* HERO TYPOGRAPHY OVERLAY */}
-            <div 
+            <div
               className="absolute inset-x-0 flex flex-col items-center justify-center z-20 pointer-events-none px-6 text-center"
               style={{ bottom: '5rem' }}
             >
-              <h1 
+              <h1
                 className="text-white font-display italic text-center"
                 style={{
-                  fontSize: isMobile 
-                    ? `${2.8 + (4.2 - 2.8) * (1 - scrollProgress)}rem` 
+                  fontSize: isMobile
+                    ? `${2.8 + (4.2 - 2.8) * (1 - scrollProgress)}rem`
                     : `${3.6 + (8.0 - 3.6) * (1 - scrollProgress)}rem`,
                   lineHeight: 1.1,
                   textShadow: '0 2px 10px rgba(0,0,0,0.35)',
@@ -269,9 +269,9 @@ export default function ScrollCollage() {
             </div>
 
             {/* SCROLL PROMPT prompt (fades out on scroll) */}
-            <div 
+            <div
               className="absolute flex flex-col items-center gap-2 z-20 pointer-events-none"
-              style={{ 
+              style={{
                 opacity: scrollPromptOpacity,
                 bottom: '2.5rem',
                 left: '50%',
@@ -288,9 +288,9 @@ export default function ScrollCollage() {
           </div>
 
           {/* CANYON CARD (TOP RIGHT) */}
-          <img 
-            src={imgCanyon} 
-            alt="Canyon lookout" 
+          <img
+            src={imgCanyon}
+            alt="Canyon lookout"
             className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
               width: `${sizes.canyon.w}px`,
@@ -307,9 +307,9 @@ export default function ScrollCollage() {
           />
 
           {/* FEET CARD (BOTTOM RIGHT) */}
-          <img 
-            src={imgFeet} 
-            alt="Hiking legs" 
+          <img
+            src={imgFeet}
+            alt="Hiking legs"
             className="absolute pointer-events-none select-none object-cover shadow-md"
             style={{
               width: `${sizes.feet.w}px`,
@@ -325,9 +325,9 @@ export default function ScrollCollage() {
           />
 
           {/* PEACOCK STICKER (TOP RIGHT) */}
-          <img 
-            src={peacockSticker} 
-            alt="Peacock decoration sticker" 
+          <img
+            src={peacockSticker}
+            alt="Peacock decoration sticker"
             className="absolute pointer-events-none select-none object-contain"
             style={{
               width: `${sizes.peacockSticker.w}px`,
@@ -342,9 +342,9 @@ export default function ScrollCollage() {
           />
 
           {/* ELEPHANT STICKER (BOTTOM LEFT) */}
-          <img 
-            src={elephantSticker} 
-            alt="Elephant decoration sticker" 
+          <img
+            src={elephantSticker}
+            alt="Elephant decoration sticker"
             className="absolute pointer-events-none select-none object-contain"
             style={{
               width: `${sizes.elephantSticker.w}px`,
