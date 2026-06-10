@@ -80,7 +80,7 @@ function App() {
         <div className="max-w-[600px] mx-auto flex flex-col items-center gap-4">
           <p className="font-display italic text-3xl text-accent-color">P&N</p>
           <p className="text-xs text-text-muted font-medium uppercase tracking-[0.2em]">
-            9–11 February 2027 • Jaipur, India
+            {isChennai ? '28 January 2027 • Chennai, India' : '9–11 February 2027 • Jaipur, India'}
           </p>
           <div className="h-[1px] w-12 bg-accent-color/30 my-2"></div>
           <p className="text-[11px] text-text-muted/65 font-light">

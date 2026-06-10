@@ -116,19 +116,73 @@ export default function CountdownSection() {
           transition: 'opacity 0.1s ease-out',
           paddingLeft: '24px',
           paddingRight: '24px',
+          width: '100%',
         }}
       >
-        <h2 
-          className="font-display text-text-primary font-normal"
-          style={{
-            fontSize: isMobile ? '2.1rem' : '3.6rem',
-            lineHeight: 1.45,
-          }}
-        >
-          “The countdown to forever begins {!isMobile && <br />}
-          with a celebration of <span style={{ color: 'var(--palette-red)' }}>love, laughter</span> {!isMobile && <br />}
-          and happily ever after”
-        </h2>
+        <div className="relative w-full">
+          {/* Progressive Blur Layer 1 (Outer - 2px blur, 8% opacity for invisible edge) */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundColor: 'rgba(252, 247, 237, 0.08)',
+              backdropFilter: 'blur(2px)',
+              WebkitBackdropFilter: 'blur(2px)',
+              borderRadius: isMobile ? '32px' : '64px',
+              zIndex: 1,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Progressive Blur Layer 2 (Middle - 7px cumulative blur, 28% cumulative opacity) */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: isMobile ? '12px 18px' : '20px 40px',
+              backgroundColor: 'rgba(252, 247, 237, 0.22)',
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
+              borderRadius: isMobile ? '24px' : '48px',
+              zIndex: 1,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Progressive Blur Layer 3 (Inner - 15px cumulative blur, 53% cumulative opacity) */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: isMobile ? '24px 36px' : '40px 80px',
+              backgroundColor: 'rgba(252, 247, 237, 0.35)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              borderRadius: isMobile ? '16px' : '32px',
+              zIndex: 1,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Text Content Layer - positioned above the blur */}
+          <div
+            style={{
+              position: 'relative',
+              zIndex: 2,
+              padding: isMobile ? '2.5rem 2rem' : '4.5rem 6rem',
+            }}
+          >
+            <h2 
+              className="font-display text-text-primary font-normal"
+              style={{
+                fontSize: isMobile ? '2.1rem' : '3.6rem',
+                lineHeight: 1.45,
+              }}
+            >
+              “The countdown to forever begins {!isMobile && <br />}
+              with a celebration of <span style={{ color: 'var(--palette-red)' }}>love, laughter</span> {!isMobile && <br />}
+              and happily ever after”
+            </h2>
+          </div>
+        </div>
 
         {/* Elegant vertical visual anchor */}
         <div 

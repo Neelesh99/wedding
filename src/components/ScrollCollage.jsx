@@ -197,7 +197,7 @@ export default function ScrollCollage() {
               opacity: 1,
               transform: `translate3d(${(1 - easedBeachX) * -translateOffset}px, ${(1 - easedBeachY) * 60}px, 0) scale(${0.85 + 0.15 * easedBeachX})`,
               transformOrigin: 'right center',
-              zIndex: isMobile ? 5 : 20
+              zIndex: 20
             }}
           />
 
@@ -215,7 +215,7 @@ export default function ScrollCollage() {
               opacity: 1,
               transform: `translate3d(${(1 - easedDancingX) * -translateOffset}px, ${(1 - easedDancingY) * -60}px, 0) scale(${0.85 + 0.15 * easedDancingX})`,
               transformOrigin: 'right center',
-              zIndex: isMobile ? 5 : 20
+              zIndex: 20
             }}
           />
 
@@ -301,7 +301,7 @@ export default function ScrollCollage() {
               opacity: 1,
               transform: `translate3d(${(1 - easedCanyonX) * translateOffset}px, ${(1 - easedCanyonY) * 50}px, 0) scale(${0.85 + 0.15 * easedCanyonX})`,
               transformOrigin: 'left center',
-              zIndex: isMobile ? 5 : 20,
+              zIndex: 20,
               objectPosition: 'center 70%'
             }}
           />
@@ -320,7 +320,7 @@ export default function ScrollCollage() {
               opacity: 1,
               transform: `translate3d(${(1 - easedFeetX) * translateOffset}px, ${(1 - easedFeetY) * -70}px, 0) scale(${0.85 + 0.15 * easedFeetX})`,
               transformOrigin: 'left center',
-              zIndex: isMobile ? 5 : 20
+              zIndex: 20
             }}
           />
 
