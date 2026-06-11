@@ -169,7 +169,7 @@ export default function ScrollCollage() {
         >
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="font-semibold text-lg md:text-xl tracking-[0.25em] uppercase whitespace-nowrap cursor-pointer hover:opacity-60 transition-opacity duration-300 focus:outline-none"
+            className="font-semibold text-lg md:text-xl tracking-[0.25em] whitespace-nowrap cursor-pointer hover:opacity-60 transition-opacity duration-300 focus:outline-none"
             aria-label="Scroll to top"
           >
             NeelFoundHisPal
